@@ -10,3 +10,8 @@ app.include_router(analyze.router)
 @app.get("/")
 def home():
     return {"message": "Legal AI backend running"}
+
+if __name__ == "__main__":
+    import uvicorn
+    # This starts the server on port 8000 and keeps it running
+    uvicorn.run(app, host="0.0.0.0", port=8000)
