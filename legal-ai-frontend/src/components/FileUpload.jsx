@@ -4,16 +4,16 @@ import { Upload } from 'lucide-react';
 export default function FileUpload({ onUpload }) {
   const handleChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.type === "application/pdf") {
-      onUpload(file);
-    }
+    if (file) onUpload(file);
   };
 
   return (
-    <label className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full cursor-pointer transition-all duration-300 shadow-lg shadow-blue-500/25 active:scale-95 border border-blue-400/20">
-      <Upload size={18} className="group-hover:-translate-y-0.5 transition-transform" />
-      <span className="text-sm font-semibold tracking-wide">Upload Contract</span>
-      <input type="file" className="hidden" accept=".pdf" onChange={handleChange} />
-    </label>
+    <div className="relative">
+      <input type="file" accept=".pdf" onChange={handleChange} className="absolute inset-0 opacity-0 cursor-pointer w-full h-full" id="fileInput" />
+      <label htmlFor="fileInput" className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full flex items-center gap-2 text-sm font-bold transition-all shadow-lg shadow-blue-500/20 cursor-pointer">
+        <Upload size={18} />
+        Analyze Contract
+      </label>
+    </div>
   );
 }

@@ -1,10 +1,19 @@
-def split_legal_text(text: str, chunk_size: int = 1000, overlap: int = 200):
+def split_text_into_chunks(text, chunk_size=1000, chunk_overlap=200):
     """
-    The 'Editor': Breaks long contracts into smaller, overlapping pieces.
-    Overlap ensures we don't cut a legal clause in half!
+    Splits long legal text into smaller, overlapping pieces 
+    so the Vector DB can search through them easily.
     """
+    if not text:
+        return []
+        
     chunks = []
-    for i in range(0, len(text), chunk_size - overlap):
-        chunk = text[i : i + chunk_size]
+    # Logic to slide through the text and create overlapping chunks
+    # Overlap ensures no legal sentence is cut exactly in half
+    start = 0
+    while start < len(text):
+        end = start + chunk_size
+        chunk = text[start:end]
         chunks.append(chunk)
+        start += (chunk_size - chunk_overlap)
+    
     return chunks
