@@ -1,5 +1,5 @@
 
-from rag.prompts import LEGAL_SYSTEM_PROMPT
+from rag.prompts import LEGAL_SYSTEM_PROMPT, CHAT_SYSTEM_PROMPT
 
 import os
 from groq import Groq
@@ -10,25 +10,55 @@ load_dotenv()
 # Initialize Groq Client
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-def get_legal_analysis(prompt: str):
+def get_legal_analysis(document_text: str):
     """
-    Sends the legal prompt to Llama 3.3 and returns a CLEAN string.
+    Analyzes a legal document and returns a structured JSON risks object.
+    Uses LEGAL_SYSTEM_PROMPT to instruct the model to return { "risks": [...] }.
     """
     try:
         chat_completion = client.chat.completions.create(
             messages=[
                 {
+                    "role": "system",
+                    "content": LEGAL_SYSTEM_PROMPT,
+                },
+                {
                     "role": "user",
-                    "content": prompt,
+                    "content": f"Analyze this legal document and return ONLY a JSON object:\n\n{document_text}",
                 }
             ],
-            model="llama-3.3-70b-versatile", # Use the stable Llama model
-            temperature=0.3, # Low temperature for factual legal answers
+            model="llama-3.3-70b-versatile",
+            temperature=0.1,  # Very low for consistent structured output
         )
-        
-        # EXTRACT THE TEXT: This is the critical part
         return chat_completion.choices[0].message.content
 
     except Exception as e:
-        print(f"❌ Groq API Error: {str(e)}")
+        print(f"❌ Groq API Error (analysis): {str(e)}")
+        return f"Error: {str(e)}"
+
+
+def get_chat_answer(rag_prompt: str):
+    """
+    Answers a user question using RAG context.
+    Uses CHAT_SYSTEM_PROMPT so the model behaves like a legal assistant.
+    """
+    try:
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": CHAT_SYSTEM_PROMPT,
+                },
+                {
+                    "role": "user",
+                    "content": rag_prompt,
+                }
+            ],
+            model="llama-3.3-70b-versatile",
+            temperature=0.3,
+        )
+        return chat_completion.choices[0].message.content
+
+    except Exception as e:
+        print(f"❌ Groq API Error (chat): {str(e)}")
         return f"Error: {str(e)}"

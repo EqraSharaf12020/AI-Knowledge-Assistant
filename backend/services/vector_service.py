@@ -13,7 +13,7 @@ from db.metadata_db import save_metadata, load_metadata
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 class VectorDB:
-    def _init_(self):
+    def __init__(self):
         # 2. Try to load existing data from the /db folder
         self.index = load_index()
         self.chunks = load_metadata()
