@@ -1,10 +1,19 @@
- import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 
- export default function PDFViewer({ file }) {
-  const fileUrl = URL.createObjectURL(file);
+export default function PDFViewer({ file }) {
+  const fileUrl = useMemo(() => URL.createObjectURL(file), [file]);
+
+  useEffect(() => {
+    return () => URL.revokeObjectURL(fileUrl);
+  }, [fileUrl]);
+
   return (
-    <div className="h-full w-full rounded-lg shadow-inner bg-white overflow-hidden border">
-      <iframe src={`${fileUrl}#toolbar=0`} title="Contract Preview" className="w-full h-full border-none" />
+    <div className="pdf-viewer">
+      <iframe
+        src={`${fileUrl}#toolbar=0`}
+        title="Contract Preview"
+        className="pdf-frame"
+      />
     </div>
   );
- }
+}

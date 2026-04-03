@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { MessageSquare, X, SendHorizontal, BotMessageSquare, Loader2 } from 'lucide-react';
+import { BotMessageSquare, MessageSquare, SendHorizontal, X } from 'lucide-react';
 
 export default function ChatWindow() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,49 +59,52 @@ export default function ChatWindow() {
     }
   };
 
-  if (!isOpen) return (
-    <button onClick={() => setIsOpen(true)} className="fixed bottom-8 right-8 z-50 p-4 bg-blue-600 text-white rounded-full shadow-2xl transition-transform hover:scale-110">
-      <MessageSquare size={24} />
-    </button>
-  );
+  if (!isOpen) {
+    return (
+      <button onClick={() => setIsOpen(true)} className="chat-launcher">
+        <MessageSquare size={24} />
+      </button>
+    );
+  }
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 w-96 h-[34rem] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
-      {/* Header */}
-      <div className="p-4 bg-slate-900 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-           <BotMessageSquare size={20} className="text-blue-400" />
-           <span className="text-white font-bold text-sm">LexGuard AI</span>
+    <div className="chat-window">
+      <div className="chat-header">
+        <div className="chat-title">
+          <BotMessageSquare size={20} />
+          <span>LexGuard AI</span>
         </div>
-        <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-white"><X size={18} /></button>
+        <button onClick={() => setIsOpen(false)} className="chat-close">
+          <X size={18} />
+        </button>
       </div>
 
-      {/* Messages */}
-      <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto bg-slate-50">
+      <div ref={scrollRef} className="chat-messages">
         {messages.map((msg, i) => (
-          <div key={i} className={`flex mb-4 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-              msg.sender === 'user' ? 'bg-blue-600 text-white' : 'bg-white text-slate-800 border'
-            }`}>
+          <div key={i} className={`chat-row ${msg.sender === 'user' ? 'chat-row-user' : ''}`}>
+            <div
+              className={`chat-bubble ${
+                msg.sender === 'user' ? 'chat-bubble-user' : 'chat-bubble-ai'
+              }`}
+            >
               {msg.text}
             </div>
           </div>
         ))}
-        {isTyping && <div className="text-xs text-slate-400 animate-pulse">AI is thinking...</div>}
+        {isTyping && <div className="chat-typing">AI is thinking...</div>}
       </div>
 
-      {/* Input */}
-      <div className="p-4 border-t">
-        <div className="flex gap-2">
-          <input 
-            type="text" 
-            value={input} 
+      <div className="chat-input-bar">
+        <div className="chat-input-row">
+          <input
+            type="text"
+            value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Type your message..."
-            className="flex-1 bg-slate-100 border-none rounded-full px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-blue-400"
+            className="chat-input"
           />
-          <button onClick={handleSend} className="p-2 bg-blue-600 text-white rounded-full">
+          <button onClick={handleSend} className="chat-send">
             <SendHorizontal size={18} />
           </button>
         </div>
