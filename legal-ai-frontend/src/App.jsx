@@ -1,16 +1,162 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Download, FileSearch, Home, Shield, Sparkles, Zap } from 'lucide-react';
 import PDFViewer from './components/PDFViewer';
 import RiskSidebar from './components/RiskSidebar';
 import FileUpload from './components/FileUpload';
 import ChatWindow from './components/ChatWindow';
-import { Shield, FileText, Zap, Loader2 } from 'lucide-react';
 
+const RISK_WEIGHTS = {
+  High: 35,
+  Medium: 18,
+  Low: 8,
+};
+
+function deriveRiskSummary(analysisData) {
+  const risks = analysisData?.risks || [];
+  const highCount = risks.filter((item) => item.type === 'High').length;
+  const mediumCount = risks.filter((item) => item.type === 'Medium').length;
+  const lowCount = risks.filter((item) => item.type === 'Low').length;
+
+  const score = Math.min(
+    100,
+    highCount * RISK_WEIGHTS.High +
+      mediumCount * RISK_WEIGHTS.Medium +
+      lowCount * RISK_WEIGHTS.Low
+  );
+
+  let label = 'Low';
+  if (score >= 70) {
+    label = 'Critical';
+  } else if (score >= 45) {
+    label = 'Elevated';
+  } else if (score >= 20) {
+    label = 'Guarded';
+  }
+
+  return {
+    score,
+    label,
+    counts: {
+      high: highCount,
+      medium: mediumCount,
+      low: lowCount,
+      total: risks.length,
+    },
+  };
+}
+
+function sanitizePdfText(value) {
+  return String(value || '')
+    .replace(/\\/g, '\\\\')
+    .replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)')
+    .replace(/\r?\n/g, ' ');
+}
+
+function buildPdfDocument(lines) {
+  const pageWidth = 612;
+  const pageHeight = 792;
+  const left = 50;
+  const top = 742;
+  const lineHeight = 18;
+  const linesPerPage = 36;
+  const pages = [];
+
+  for (let index = 0; index < lines.length; index += linesPerPage) {
+    pages.push(lines.slice(index, index + linesPerPage));
+  }
+
+  const objects = [];
+  const fontObjectNumber = 3 + pages.length * 2;
+
+  objects.push('1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+
+  const pageObjectNumbers = pages.map((_, index) => 3 + index * 2);
+  objects.push(
+    `2 0 obj\n<< /Type /Pages /Kids [${pageObjectNumbers
+      .map((number) => `${number} 0 R`)
+      .join(' ')}] /Count ${pages.length} >>\nendobj\n`
+  );
+
+  pages.forEach((pageLines, index) => {
+    const pageObjectNumber = 3 + index * 2;
+    const contentObjectNumber = pageObjectNumber + 1;
+    const content = [
+      'BT',
+      '/F1 11 Tf',
+      '0.2 0.2 0.2 rg',
+      `${left} ${top} Td`,
+    ];
+
+    pageLines.forEach((line, lineIndex) => {
+      const safeLine = sanitizePdfText(line);
+      if (lineIndex === 0) {
+        content.push(`(${safeLine}) Tj`);
+      } else {
+        content.push(`0 -${lineHeight} Td`);
+        content.push(`(${safeLine}) Tj`);
+      }
+    });
+
+    content.push('ET');
+    const contentStream = `${content.join('\n')}\n`;
+
+    objects.push(
+      `${pageObjectNumber} 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidth} ${pageHeight}] /Resources << /Font << /F1 ${fontObjectNumber} 0 R >> >> /Contents ${contentObjectNumber} 0 R >>\nendobj\n`
+    );
+    objects.push(
+      `${contentObjectNumber} 0 obj\n<< /Length ${contentStream.length} >>\nstream\n${contentStream}endstream\nendobj\n`
+    );
+  });
+
+  objects.push(`${fontObjectNumber} 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n`);
+
+  let pdf = '%PDF-1.4\n';
+  const offsets = [0];
+  const encoder = new TextEncoder();
+
+  objects.forEach((object) => {
+    offsets.push(encoder.encode(pdf).length);
+    pdf += object;
+  });
+
+  const xrefOffset = encoder.encode(pdf).length;
+  pdf += `xref\n0 ${objects.length + 1}\n`;
+  pdf += '0000000000 65535 f \n';
+  offsets.slice(1).forEach((offset) => {
+    pdf += `${String(offset).padStart(10, '0')} 00000 n \n`;
+  });
+  pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+
+  return new Blob([pdf], { type: 'application/pdf' });
+}
 
 export default function App() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [analysisData, setAnalysisData] = useState(null);
+
+  const featureItems = [
+    {
+      icon: FileSearch,
+      title: 'Clause Intelligence',
+      description:
+        'Surface hidden obligations, missing protections, and ambiguous wording in seconds.',
+    },
+    {
+      icon: Shield,
+      title: 'Risk Prioritization',
+      description:
+        'Highlight what matters most before the contract reaches signature or review.',
+    },
+    {
+      icon: Sparkles,
+      title: 'AI Guidance',
+      description:
+        'Turn legal complexity into direct, actionable suggestions for the next draft.',
+    },
+  ];
 
   const handleUpload = async (uploadedFile) => {
     setFile(uploadedFile);
@@ -21,62 +167,242 @@ export default function App() {
     formData.append('file', uploadedFile);
 
     try {
-      // Connects to Person 3's API
       const response = await axios.post('http://localhost:8000/analyze/', formData);
       setAnalysisData(response.data.analysis);
     } catch (error) {
-      console.error("Upload failed:", error);
-      alert("Backend connection failed. Is the server running?");
+      console.error('Upload failed:', error);
+      alert('Backend connection failed. Is the server running?');
     } finally {
       setLoading(false);
     }
   };
 
+  const handleGoHome = () => {
+    setFile(null);
+    setLoading(false);
+    setAnalysisData(null);
+  };
+
+  const handleExportAnalysis = () => {
+    if (!analysisData) {
+      return;
+    }
+
+    const riskSummary = deriveRiskSummary(analysisData);
+    const fileName = (file?.name || 'contract-analysis').replace(/\.pdf$/i, '');
+    const lines = [
+      'LexGuard AI Analysis Report',
+      `Document: ${file?.name || 'Uploaded Document'}`,
+      `Generated: ${new Date().toLocaleString()}`,
+      `Overall Risk Score: ${riskSummary.score}/100 (${riskSummary.label})`,
+      `Risk Counts: High ${riskSummary.counts.high}, Medium ${riskSummary.counts.medium}, Low ${riskSummary.counts.low}`,
+      '',
+    ];
+
+    if (analysisData.risks && analysisData.risks.length > 0) {
+      analysisData.risks.forEach((item, index) => {
+        lines.push(`Clause ${index + 1}: ${item.type || 'Risk'} - ${item.risk || 'Risk'}`);
+        lines.push(`Clause Text: ${item.clause || 'N/A'}`);
+        lines.push(`Suggestion: ${item.suggestion || 'N/A'}`);
+        lines.push('');
+      });
+    } else {
+      lines.push(`Summary: ${analysisData.raw || 'No structured risks found for this document.'}`);
+    }
+
+    const blob = buildPdfDocument(lines);
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.href = downloadUrl;
+    link.download = `${fileName}-risk-report.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(downloadUrl);
+  };
+
+  const riskSummary = deriveRiskSummary(analysisData);
+
   return (
-    <div className="flex flex-col h-screen bg-[#f8fafc] font-sans text-slate-900">
-      <header className="h-20 bg-[#0f172a] flex items-center px-10 justify-between shadow-xl z-20">
-        <div className="flex items-center gap-3">
-          <div className="bg-blue-500 p-2 rounded-lg">
-            <Shield className="text-white" size={24} />
+    <div className={`app-shell ${file ? 'app-shell-document' : 'app-shell-landing'}`}>
+      <header className="app-header">
+        <button type="button" className="brand-block brand-button" onClick={handleGoHome}>
+          <div className="brand-icon">
+            <Shield size={22} />
           </div>
-          <div>
-            <h1 className="text-white font-bold text-xl">LexGuard <span className="text-blue-400">AI</span></h1>
-            <p className="text-slate-400 text-[10px] uppercase font-bold">MNNIT Project</p>
+          <div className="brand-copy">
+            <h1>
+              LexGuard <span>AI</span>
+            </h1>
+            <div className="brand-subline">
+              {file ? (
+                <span className="brand-home-chip">
+                  <span className="header-home-icon">
+                    <Home size={14} />
+                  </span>
+                  <span>Home</span>
+                </span>
+              ) : (
+                <p>Contract review assistant for faster legal screening</p>
+              )}
+            </div>
           </div>
-        </div>
-        <FileUpload onUpload={handleUpload} />
+        </button>
       </header>
 
-      <main className="flex flex-1 overflow-hidden relative">
+      <main className={`app-main ${file ? 'app-main-document' : 'app-main-landing'}`}>
         {file ? (
-          <div className="flex w-full h-full">
-            <div className="w-[65%] p-8 bg-slate-200/50">
-               <div className="h-full rounded-xl overflow-hidden border bg-white shadow-2xl">
-                 <PDFViewer file={file} />
-               </div>
-            </div>
-            
-            <div className="w-[35%] bg-white border-l overflow-y-auto shadow-2xl">
-              <div className="sticky top-0 bg-white p-6 border-b flex items-center justify-between z-10">
-                <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                  <Zap size={18} className="text-yellow-500 fill-yellow-500" />
-                  Clause Analysis
-                </h3>
-                {loading ? <Loader2 className="animate-spin text-blue-600" size={18} /> : 
-                  <span className="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">READY</span>
-                }
+          <div className="workspace-layout">
+            <section className="document-stage">
+              <div className="panel-head panel-head-dark">
+                <div className="panel-title-block">
+                  <span className="eyebrow">Uploaded file</span>
+                  <h2>{file.name}</h2>
+                  <p className="panel-subcopy">
+                    Side-by-side document preview for clause review and verification.
+                  </p>
+                </div>
+                <span className="status-pill status-pill-amber">Live preview</span>
               </div>
-              <RiskSidebar loading={loading} analysisData={analysisData} />
-            </div>
+              <div className="document-frame">
+                <PDFViewer file={file} />
+              </div>
+            </section>
+
+            <aside className="analysis-stage">
+              <div className="panel-head">
+                <div className="panel-title-block">
+                  <span className="eyebrow">AI Review</span>
+                  <h3>Clause Analysis</h3>
+                  <p className="panel-subcopy">
+                    Risks, clause notes, and actionable suggestions in a focused review feed.
+                  </p>
+                </div>
+                <div className="analysis-status">
+                  {loading ? <span className="status-pill status-pill-loading">Reviewing...</span> : null}
+                  {analysisData ? (
+                    <span className={`status-pill risk-score-pill risk-score-${riskSummary.label.toLowerCase()}`}>
+                      Risk Score {riskSummary.score}
+                    </span>
+                  ) : null}
+                  <button
+                    type="button"
+                    className="analysis-export-button"
+                    onClick={handleExportAnalysis}
+                    disabled={!analysisData || loading}
+                  >
+                    <Download size={14} />
+                    Export PDF
+                  </button>
+                  <Zap size={16} />
+                </div>
+              </div>
+              <RiskSidebar loading={loading} analysisData={analysisData} riskSummary={riskSummary} />
+            </aside>
           </div>
         ) : (
-          <div className="flex-1 flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-6">
-            <div className="mb-8 p-6 bg-slate-50 border rounded-[2.5rem] shadow-xl">
-              <FileText size={80} className="text-blue-600" strokeWidth={1} />
+          <section className="landing-shell" id="features">
+            <div className="landing-copy">
+              <div className="landing-badge">
+                <Sparkles size={14} />
+                Trusted contract review workspace
+              </div>
+
+              <h2>Review legal documents with a calmer, sharper workflow.</h2>
+
+              <p className="landing-description">
+                LexGuard AI helps your team inspect clauses, uncover risk, and
+                chat with uploaded contracts in one clean, professional
+                workspace.
+              </p>
+
+              <div className="landing-actions">
+                <FileUpload
+                  onUpload={handleUpload}
+                  label="Upload PDF"
+                  variant="primary"
+                />
+              </div>
+
+              <div className="landing-stats">
+                <div className="stat-card">
+                  <strong>PDF analysis</strong>
+                  <span>Extract clauses and inspect legal language instantly.</span>
+                </div>
+                <div className="stat-card">
+                  <strong>RAG-powered chat</strong>
+                  <span>Ask focused questions after the document is indexed.</span>
+                </div>
+              </div>
             </div>
-            <h2 className="text-4xl font-extrabold mb-4">Verify Contracts with <span className="text-blue-600">Confidence.</span></h2>
-            <p className="text-lg text-slate-500 mb-10">Upload a PDF to identify hidden risks and missing clauses using RAG technology.</p>
-          </div>
+
+            <div className="landing-visual">
+              <div className="visual-card visual-card-hero">
+                <div className="hero-glow hero-glow-primary" />
+                <div className="hero-glow hero-glow-secondary" />
+                <div className="justice-stage">
+                  <div className="justice-frame" />
+                  <div className="justice-figure">
+                    <span className="justice-halo" />
+                    <span className="justice-head" />
+                    <span className="justice-torso" />
+                    <span className="justice-base" />
+                    <span className="justice-arm justice-arm-left" />
+                    <span className="justice-arm justice-arm-right" />
+                    <span className="justice-scale justice-scale-left">
+                      <span className="justice-chain justice-chain-left" />
+                      <span className="justice-chain justice-chain-right" />
+                      <span className="justice-bowl" />
+                    </span>
+                    <span className="justice-scale justice-scale-right">
+                      <span className="justice-chain justice-chain-left" />
+                      <span className="justice-chain justice-chain-right" />
+                      <span className="justice-bowl" />
+                    </span>
+                  </div>
+                </div>
+                <div className="hero-card-copy">
+                  <span className="eyebrow">Confident legal review</span>
+                  <h3>Turn complex legal documents into clear decisions with confidence</h3>
+                </div>
+              </div>
+
+              <div className="visual-grid">
+                <div className="visual-card visual-card-document">
+                  <div className="document-lines">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className="magnifier" />
+                  <div className="feather feather-left" />
+                  <div className="feather feather-right" />
+                </div>
+
+                <div className="visual-card visual-card-features">
+                  <span className="eyebrow">What you get</span>
+                  <div className="feature-list">
+                    {featureItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <div key={item.title} className="feature-item">
+                          <div className="feature-icon">
+                            <Icon size={18} />
+                          </div>
+                          <div>
+                            <strong>{item.title}</strong>
+                            <p>{item.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         )}
       </main>
       <ChatWindow />
