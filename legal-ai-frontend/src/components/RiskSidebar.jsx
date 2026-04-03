@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertCircle, CheckCircle2 } from 'lucide-react';
+import { AlertCircle, CheckCircle2, AlertTriangle } from 'lucide-react';
 
 export default function RiskSidebar({ loading, analysisData }) {
   if (loading) return (
@@ -9,11 +9,33 @@ export default function RiskSidebar({ loading, analysisData }) {
     </div>
   );
 
-  if (!analysisData || !analysisData.risks) return (
+  if (!analysisData) return (
     <div className="p-10 text-center text-slate-400 text-sm">
       No analysis available. Upload a file to start.
     </div>
   );
+
+  // Fallback: if JSON parsing failed on backend, show raw text
+  if (!analysisData.risks || analysisData.risks.length === 0) {
+    if (analysisData.raw) {
+      return (
+        <div className="p-4">
+          <div className="p-4 rounded-2xl border border-yellow-200 bg-yellow-50">
+            <div className="flex items-center gap-2 mb-2">
+              <AlertTriangle size={14} className="text-yellow-500" />
+              <span className="text-xs font-bold text-yellow-700">Raw AI Response</span>
+            </div>
+            <p className="text-xs text-slate-600 leading-relaxed whitespace-pre-wrap">{analysisData.raw}</p>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="p-10 text-center text-slate-400 text-sm">
+        ✅ No significant risks found in this document.
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 space-y-4">
@@ -25,7 +47,7 @@ export default function RiskSidebar({ loading, analysisData }) {
             <AlertCircle size={14} className={item.type === 'High' ? 'text-red-500' : 'text-yellow-500'} />
             <span className={`text-[10px] font-bold uppercase ${
               item.type === 'High' ? 'text-red-600' : 'text-yellow-600'
-            }`}>{item.risk}</span>
+            }`}>{item.type} RISK — {item.risk}</span>
           </div>
           <p className="text-xs text-slate-600 leading-relaxed font-medium mb-3">"{item.clause}"</p>
           <div className="p-3 bg-slate-50 rounded-xl text-[11px] text-blue-800 border border-blue-100 flex gap-2">
