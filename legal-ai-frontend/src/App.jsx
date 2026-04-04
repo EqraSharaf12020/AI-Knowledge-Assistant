@@ -204,6 +204,7 @@ export default function App() {
   const [uploadHistory, setUploadHistory] = useState([]);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
   const [comparisonData, setComparisonData] = useState(null);
+  const [error, setError] = useState(null);
   const hiddenFileInput = useRef(null);
 
   const featureItems = [
@@ -236,6 +237,7 @@ export default function App() {
       setFile(uploadedFile);
       setFile2(uploadedFile2);
       setLoading(true);
+      setError(null);
       setComparisonData(null);
       setAnalysisData(null);
 
@@ -244,11 +246,21 @@ export default function App() {
       formData.append('file2', uploadedFile2);
 
       try {
-        const response = await axios.post('http://localhost:8000/analyze/compare', formData);
-        setComparisonData(response.data);
+        const response = await axios.post('http://localhost:8000/analyze/compare', formData, { timeout: 60000 });
+        if (response.data && response.data.analysis1 && response.data.analysis2) {
+          setComparisonData(response.data);
+        } else {
+          setError('Invalid comparison response received from the backend.');
+          console.error('Invalid comparison response:', response.data);
+        }
       } catch (error) {
         console.error('Comparison failed:', error);
-        alert('Backend connection failed. Is the server running?');
+        if (error.code === 'ECONNABORTED') {
+          alert('Request timed out while comparing files.');
+        } else {
+          alert('Backend connection failed. Is the server running?');
+        }
+        setError(error?.message || 'Comparison request failed.');
       } finally {
         setLoading(false);
       }
@@ -265,6 +277,7 @@ export default function App() {
       setFile(uploadedFile);
       setUploadHistory((prev) => [newHistoryItem, ...prev]);
       setLoading(true);
+      setError(null);
       setAnalysisData(null);
       setComparisonData(null);
 
@@ -272,16 +285,26 @@ export default function App() {
       formData.append('file', uploadedFile);
 
       try {
-        const response = await axios.post('http://localhost:8000/analyze/', formData);
-        setAnalysisData(response.data.analysis);
-        setUploadHistory((prev) =>
-          prev.map((item) =>
-            item.id === entryId ? { ...item, analysis: response.data.analysis } : item
-          )
-        );
+        const response = await axios.post('http://localhost:8000/analyze/', formData, { timeout: 60000 });
+        if (response.data && response.data.analysis) {
+          setAnalysisData(response.data.analysis);
+          setUploadHistory((prev) =>
+            prev.map((item) =>
+              item.id === entryId ? { ...item, analysis: response.data.analysis } : item
+            )
+          );
+        } else {
+          setError('Invalid analysis response received from the backend.');
+          console.error('Invalid upload response:', response.data);
+        }
       } catch (error) {
         console.error('Upload failed:', error);
-        alert('Backend connection failed. Is the server running?');
+        if (error.code === 'ECONNABORTED') {
+          alert('Request timed out while analyzing the PDF.');
+        } else {
+          alert('Backend connection failed. Is the server running?');
+        }
+        setError(error?.message || 'Upload request failed.');
       } finally {
         setLoading(false);
       }
@@ -303,6 +326,7 @@ export default function App() {
     setLoading(false);
     setAnalysisData(null);
     setComparisonData(null);
+    setError(null);
     setIsComparisonMode(false);
   };
 
@@ -533,9 +557,6 @@ export default function App() {
                   <PDFViewer file={file} />
                 )}
               </div>
-              {comparisonData ? null : (
-                <RiskSidebar loading={loading} analysisData={analysisData} riskSummary={riskSummary} />
-              )}
             </section>
 
             {!comparisonData && (
@@ -566,6 +587,11 @@ export default function App() {
                     </button>
                     <Zap size={16} />
                   </div>
+                  {error ? (
+                    <div className="analysis-error-message">
+                      <strong>Error:</strong> {error}
+                    </div>
+                  ) : null}
                 </div>
                 <RiskSidebar loading={loading} analysisData={analysisData} riskSummary={riskSummary} />
               </aside>

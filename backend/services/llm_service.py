@@ -7,8 +7,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Initialize Groq Client
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+# Initialize Groq Client with a backend timeout so slow model responses do not hang forever.
+client = Groq(
+    api_key=os.getenv("GROQ_API_KEY"),
+    timeout=float(os.getenv("GROQ_TIMEOUT", "120")),
+    base_url=os.getenv("GROQ_BASE_URL", None),
+)
+
+MODEL_NAME = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
 def get_legal_analysis(document_text: str):
     """
@@ -27,7 +33,7 @@ def get_legal_analysis(document_text: str):
                     "content": f"Analyze this legal document and return ONLY a JSON object:\n\n{document_text}",
                 }
             ],
-            model="llama-3.3-70b-versatile",
+            model=MODEL_NAME,
             temperature=0.1,  # Very low for consistent structured output
         )
         return chat_completion.choices[0].message.content
@@ -54,7 +60,7 @@ def get_chat_answer(rag_prompt: str):
                     "content": rag_prompt,
                 }
             ],
-            model="llama-3.3-70b-versatile",
+            model=MODEL_NAME,
             temperature=0.3,
         )
         return chat_completion.choices[0].message.content
