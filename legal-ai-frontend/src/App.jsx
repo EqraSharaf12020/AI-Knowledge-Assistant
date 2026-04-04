@@ -46,6 +46,70 @@ function deriveRiskSummary(analysisData) {
   };
 }
 
+function countRiskTopics(analysisData) {
+  const keywords = {
+    liability: 'Liability',
+    warranty: 'Warranty',
+    termination: 'Termination',
+    data: 'Data',
+    privacy: 'Privacy',
+    security: 'Security',
+    payment: 'Payment',
+    indemnity: 'Indemnity',
+    confidentiality: 'Confidentiality',
+    obligation: 'Obligation',
+    support: 'Support',
+    breach: 'Breach',
+  };
+
+  const counts = {};
+  (analysisData?.risks || []).forEach((risk) => {
+    const clause = (risk.clause || '').toLowerCase();
+    Object.keys(keywords).forEach((keyword) => {
+      if (clause.includes(keyword)) {
+        counts[keywords[keyword]] = (counts[keywords[keyword]] || 0) + 1;
+      }
+    });
+  });
+
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([topic]) => topic);
+}
+
+function summarizeRiskCounts(analysisData) {
+  const risks = analysisData?.risks || [];
+  return {
+    total: risks.length,
+    high: risks.filter((item) => item.type === 'High').length,
+    medium: risks.filter((item) => item.type === 'Medium').length,
+    low: risks.filter((item) => item.type === 'Low').length,
+  };
+}
+
+function getComparisonFeatureLabels(data1, data2, comparisonData) {
+  const topics1 = countRiskTopics(data1);
+  const topics2 = countRiskTopics(data2);
+  return [
+    {
+      title: 'Primary topics',
+      values: [topics1.slice(0, 2).join(', ') || 'General', topics2.slice(0, 2).join(', ') || 'General'],
+    },
+    {
+      title: 'Risk count',
+      values: [`${summarizeRiskCounts(data1).total}`, `${summarizeRiskCounts(data2).total}`],
+    },
+    {
+      title: 'Top risk type',
+      values: [
+        data1?.risks?.[0]?.type || 'None',
+        data2?.risks?.[0]?.type || 'None',
+      ],
+    },
+  ];
+}
+
 function sanitizePdfText(value) {
   return String(value || '')
     .replace(/\\/g, '\\\\')
@@ -134,9 +198,12 @@ function buildPdfDocument(lines) {
 
 export default function App() {
   const [file, setFile] = useState(null);
+  const [file2, setFile2] = useState(null);
   const [loading, setLoading] = useState(false);
   const [analysisData, setAnalysisData] = useState(null);
   const [uploadHistory, setUploadHistory] = useState([]);
+  const [isComparisonMode, setIsComparisonMode] = useState(false);
+  const [comparisonData, setComparisonData] = useState(null);
   const hiddenFileInput = useRef(null);
 
   const featureItems = [
@@ -160,37 +227,64 @@ export default function App() {
     },
   ];
 
-  const handleUpload = async (uploadedFile) => {
-    const entryId = `${uploadedFile.name}-${Date.now()}`;
-    const newHistoryItem = {
-      id: entryId,
-      name: uploadedFile.name,
-      file: uploadedFile,
-      uploadedAt: new Date().toLocaleString(),
-      analysis: null,
-    };
+  const handleUpload = async (uploadedFile, uploadedFile2 = null) => {
+    if (isComparisonMode) {
+      if (!uploadedFile || !uploadedFile2) {
+        alert('Please select two files for comparison.');
+        return;
+      }
+      setFile(uploadedFile);
+      setFile2(uploadedFile2);
+      setLoading(true);
+      setComparisonData(null);
+      setAnalysisData(null);
 
-    setFile(uploadedFile);
-    setUploadHistory((prev) => [newHistoryItem, ...prev]);
-    setLoading(true);
-    setAnalysisData(null);
+      const formData = new FormData();
+      formData.append('file1', uploadedFile);
+      formData.append('file2', uploadedFile2);
 
-    const formData = new FormData();
-    formData.append('file', uploadedFile);
+      try {
+        const response = await axios.post('http://localhost:8000/analyze/compare', formData);
+        setComparisonData(response.data);
+      } catch (error) {
+        console.error('Comparison failed:', error);
+        alert('Backend connection failed. Is the server running?');
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      const entryId = `${uploadedFile.name}-${Date.now()}`;
+      const newHistoryItem = {
+        id: entryId,
+        name: uploadedFile.name,
+        file: uploadedFile,
+        uploadedAt: new Date().toLocaleString(),
+        analysis: null,
+      };
 
-    try {
-      const response = await axios.post('http://localhost:8000/analyze/', formData);
-      setAnalysisData(response.data.analysis);
-      setUploadHistory((prev) =>
-        prev.map((item) =>
-          item.id === entryId ? { ...item, analysis: response.data.analysis } : item
-        )
-      );
-    } catch (error) {
-      console.error('Upload failed:', error);
-      alert('Backend connection failed. Is the server running?');
-    } finally {
-      setLoading(false);
+      setFile(uploadedFile);
+      setUploadHistory((prev) => [newHistoryItem, ...prev]);
+      setLoading(true);
+      setAnalysisData(null);
+      setComparisonData(null);
+
+      const formData = new FormData();
+      formData.append('file', uploadedFile);
+
+      try {
+        const response = await axios.post('http://localhost:8000/analyze/', formData);
+        setAnalysisData(response.data.analysis);
+        setUploadHistory((prev) =>
+          prev.map((item) =>
+            item.id === entryId ? { ...item, analysis: response.data.analysis } : item
+          )
+        );
+      } catch (error) {
+        console.error('Upload failed:', error);
+        alert('Backend connection failed. Is the server running?');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -205,8 +299,11 @@ export default function App() {
 
   const handleGoHome = () => {
     setFile(null);
+    setFile2(null);
     setLoading(false);
     setAnalysisData(null);
+    setComparisonData(null);
+    setIsComparisonMode(false);
   };
 
   const handleExportAnalysis = () => {
@@ -249,9 +346,11 @@ export default function App() {
   };
 
   const riskSummary = deriveRiskSummary(analysisData);
+  const riskSummary1 = comparisonData ? deriveRiskSummary(comparisonData.analysis1) : null;
+  const riskSummary2 = comparisonData ? deriveRiskSummary(comparisonData.analysis2) : null;
 
   return (
-    <div className={`app-shell ${file ? 'app-shell-document' : 'app-shell-landing'}`}>
+    <div className={`app-shell ${file || comparisonData ? 'app-shell-document' : 'app-shell-landing'}`}>
       <header className="app-header">
         <button type="button" className="brand-block brand-button" onClick={handleGoHome}>
           <div className="brand-icon">
@@ -289,9 +388,9 @@ export default function App() {
         }}
       />
 
-      <main className={`app-main ${file ? 'app-main-document' : 'app-main-landing'}`}>
-        {file ? (
-          <div className="workspace-layout">
+      <main className={`app-main ${file || comparisonData ? 'app-main-document' : 'app-main-landing'}`}>
+        {file || comparisonData ? (
+          <div className={`workspace-layout ${comparisonData ? 'comparison-mode' : ''}`}>
             <aside className="history-stage">
               <div className="panel-head panel-head-dark">
                 <div className="panel-title-block">
@@ -336,48 +435,141 @@ export default function App() {
               <div className="panel-head panel-head-dark">
                 <div className="panel-title-block">
                   <span className="eyebrow">Uploaded file</span>
-                  <h2>{file.name}</h2>
+                  <h2>{comparisonData ? `${file?.name} vs ${file2?.name}` : file?.name}</h2>
                   <p className="panel-subcopy">
-                    Side-by-side document preview for clause review and verification.
+                    {comparisonData
+                      ? 'Comparison summary and risk delta only. PDF preview is hidden in comparison mode.'
+                      : 'Side-by-side document preview for clause review and verification.'}
                   </p>
                 </div>
-                <span className="status-pill status-pill-amber">Live preview</span>
+                <span className="status-pill status-pill-amber">
+                  {comparisonData ? 'Comparison mode' : 'Live preview'}
+                </span>
               </div>
               <div className="document-frame slide-in-left">
-                <PDFViewer file={file} />
+                {comparisonData ? (
+                  <div className="comparison-dashboard">
+                    <table className="comparison-table">
+                      <thead>
+                        <tr>
+                          <th>Metric</th>
+                          <th>{comparisonData.file1}</th>
+                          <th>{comparisonData.file2}</th>
+                          <th>Delta / Insight</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Risk score</td>
+                          <td>
+                            {riskSummary1?.score ?? 0}/100
+                            <span className={`risk-summary-badge risk-summary-${riskSummary1?.label?.toLowerCase()}`}>
+                              {riskSummary1?.label || 'Unknown'}
+                            </span>
+                          </td>
+                          <td>
+                            {riskSummary2?.score ?? 0}/100
+                            <span className={`risk-summary-badge risk-summary-${riskSummary2?.label?.toLowerCase()}`}>
+                              {riskSummary2?.label || 'Unknown'}
+                            </span>
+                          </td>
+                          <td className="comparison-delta-cell">
+                            {comparisonData.risk_comparison.score_delta > 0 ? '+' : ''}{comparisonData.risk_comparison.score_delta}
+                            <div className="comparison-delta-note">Risk count change</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>New risks</td>
+                          <td>{comparisonData.risk_comparison.new_risks.length}</td>
+                          <td>—</td>
+                          <td>{comparisonData.risk_comparison.new_risks.length} added</td>
+                        </tr>
+                        <tr>
+                          <td>Removed risks</td>
+                          <td>{comparisonData.risk_comparison.removed_risks.length}</td>
+                          <td>—</td>
+                          <td>{comparisonData.risk_comparison.removed_risks.length} removed</td>
+                        </tr>
+                        <tr>
+                          <td>Modified risks</td>
+                          <td>{comparisonData.risk_comparison.modified_risks.length}</td>
+                          <td>—</td>
+                          <td>{comparisonData.risk_comparison.modified_risks.length} changed</td>
+                        </tr>
+                        <tr>
+                          <td>Primary themes</td>
+                          <td>{countRiskTopics(comparisonData.analysis1).slice(0, 3).join(', ') || 'General'}</td>
+                          <td>{countRiskTopics(comparisonData.analysis2).slice(0, 3).join(', ') || 'General'}</td>
+                          <td>Theme shift across versions</td>
+                        </tr>
+                        <tr>
+                          <td>Risk breakdown</td>
+                          <td>{summarizeRiskCounts(comparisonData.analysis1).high}H / {summarizeRiskCounts(comparisonData.analysis1).medium}M / {summarizeRiskCounts(comparisonData.analysis1).low}L</td>
+                          <td>{summarizeRiskCounts(comparisonData.analysis2).high}H / {summarizeRiskCounts(comparisonData.analysis2).medium}M / {summarizeRiskCounts(comparisonData.analysis2).low}L</td>
+                          <td>High/Med/Low count comparison</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <div className="comparison-highlights">
+                      {comparisonData.risk_comparison.new_risks.slice(0, 1).map((risk, idx) => (
+                        <div key={`new-${idx}`} className="comparison-highlight-row">
+                          <strong>New:</strong> {risk.type} — {risk.clause}
+                        </div>
+                      ))}
+                      {comparisonData.risk_comparison.removed_risks.slice(0, 1).map((risk, idx) => (
+                        <div key={`removed-${idx}`} className="comparison-highlight-row">
+                          <strong>Removed:</strong> {risk.type} — {risk.clause}
+                        </div>
+                      ))}
+                      {comparisonData.risk_comparison.modified_risks.slice(0, 1).map((mod, idx) => (
+                        <div key={`modified-${idx}`} className="comparison-highlight-row">
+                          <strong>Modified:</strong> {mod.old.type} → {mod.new.type} — {mod.new.clause}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <PDFViewer file={file} />
+                )}
               </div>
+              {comparisonData ? null : (
+                <RiskSidebar loading={loading} analysisData={analysisData} riskSummary={riskSummary} />
+              )}
             </section>
 
-            <aside className="analysis-stage">
-              <div className="panel-head">
-                <div className="panel-title-block">
-                  <span className="eyebrow">AI Review</span>
-                  <h3>Clause Analysis</h3>
-                  <p className="panel-subcopy">
-                    Risks, clause notes, and actionable suggestions in a focused review feed.
-                  </p>
+            {!comparisonData && (
+              <aside className="analysis-stage">
+                <div className="panel-head">
+                  <div className="panel-title-block">
+                    <span className="eyebrow">AI Review</span>
+                    <h3>Clause Analysis</h3>
+                    <p className="panel-subcopy">
+                      Risks, clause notes, and actionable suggestions in a focused review feed.
+                    </p>
+                  </div>
+                  <div className="analysis-status">
+                    {loading ? <span className="status-pill status-pill-loading">Reviewing...</span> : null}
+                    {analysisData ? (
+                      <span className={`status-pill risk-score-pill risk-score-${riskSummary.label.toLowerCase()}`}>
+                        Risk Score {riskSummary.score}
+                      </span>
+                    ) : null}
+                    <button
+                      type="button"
+                      className="analysis-export-button"
+                      onClick={handleExportAnalysis}
+                      disabled={!analysisData || loading}
+                    >
+                      <Download size={14} />
+                      Export PDF
+                    </button>
+                    <Zap size={16} />
+                  </div>
                 </div>
-                <div className="analysis-status">
-                  {loading ? <span className="status-pill status-pill-loading">Reviewing...</span> : null}
-                  {analysisData ? (
-                    <span className={`status-pill risk-score-pill risk-score-${riskSummary.label.toLowerCase()}`}>
-                      Risk Score {riskSummary.score}
-                    </span>
-                  ) : null}
-                  <button
-                    type="button"
-                    className="analysis-export-button"
-                    onClick={handleExportAnalysis}
-                    disabled={!analysisData || loading}
-                  >
-                    <Download size={14} />
-                    Export PDF
-                  </button>
-                  <Zap size={16} />
-                </div>
-              </div>
-              <RiskSidebar loading={loading} analysisData={analysisData} riskSummary={riskSummary} />
-            </aside>
+                <RiskSidebar loading={loading} analysisData={analysisData} riskSummary={riskSummary} />
+              </aside>
+            )}
           </div>
         ) : (
           <section className="landing-shell" id="features">
@@ -396,10 +588,22 @@ export default function App() {
               </p>
 
               <div className="landing-actions">
+                <div className="mb-4">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={isComparisonMode}
+                      onChange={(e) => setIsComparisonMode(e.target.checked)}
+                      className="mr-2"
+                    />
+                    Comparison Mode (Upload two PDFs)
+                  </label>
+                </div>
                 <FileUpload
                   onUpload={handleUpload}
-                  label="Upload PDF"
+                  label={isComparisonMode ? "Upload Two PDFs" : "Upload PDF"}
                   variant="primary"
+                  isComparison={isComparisonMode}
                 />
               </div>
 

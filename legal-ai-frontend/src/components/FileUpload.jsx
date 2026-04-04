@@ -5,10 +5,20 @@ export default function FileUpload({
   onUpload,
   label = 'Upload PDF',
   variant = 'primary',
+  isComparison = false,
 }) {
   const handleChange = (e) => {
-    const file = e.target.files[0];
-    if (file) onUpload(file);
+    if (isComparison) {
+      const files = Array.from(e.target.files);
+      if (files.length >= 2) {
+        onUpload(files[0], files[1]);
+      } else {
+        alert('Please select at least two files for comparison.');
+      }
+    } else {
+      const file = e.target.files[0];
+      if (file) onUpload(file);
+    }
   };
 
   return (
@@ -16,6 +26,7 @@ export default function FileUpload({
       <input
         type="file"
         accept=".pdf"
+        multiple={isComparison}
         onChange={handleChange}
         className="upload-input"
         id="fileInput"
