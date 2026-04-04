@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { Download, FileSearch, Home, Shield, Sparkles, Zap } from 'lucide-react';
 import PDFViewer from './components/PDFViewer';
@@ -136,6 +136,8 @@ export default function App() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [analysisData, setAnalysisData] = useState(null);
+  const [uploadHistory, setUploadHistory] = useState([]);
+  const hiddenFileInput = useRef(null);
 
   const featureItems = [
     {
@@ -159,7 +161,17 @@ export default function App() {
   ];
 
   const handleUpload = async (uploadedFile) => {
+    const entryId = `${uploadedFile.name}-${Date.now()}`;
+    const newHistoryItem = {
+      id: entryId,
+      name: uploadedFile.name,
+      file: uploadedFile,
+      uploadedAt: new Date().toLocaleString(),
+      analysis: null,
+    };
+
     setFile(uploadedFile);
+    setUploadHistory((prev) => [newHistoryItem, ...prev]);
     setLoading(true);
     setAnalysisData(null);
 
@@ -169,12 +181,26 @@ export default function App() {
     try {
       const response = await axios.post('http://localhost:8000/analyze/', formData);
       setAnalysisData(response.data.analysis);
+      setUploadHistory((prev) =>
+        prev.map((item) =>
+          item.id === entryId ? { ...item, analysis: response.data.analysis } : item
+        )
+      );
     } catch (error) {
       console.error('Upload failed:', error);
       alert('Backend connection failed. Is the server running?');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleHistorySelect = (historyItem) => {
+    setFile(historyItem.file);
+    setAnalysisData(historyItem.analysis);
+  };
+
+  const handleHistoryUploadClick = () => {
+    hiddenFileInput.current?.click();
   };
 
   const handleGoHome = () => {
@@ -250,10 +276,62 @@ export default function App() {
           </div>
         </button>
       </header>
+      <input
+        ref={hiddenFileInput}
+        type="file"
+        accept=".pdf"
+        style={{ display: 'none' }}
+        onChange={(event) => {
+          const uploadedFile = event.target.files?.[0];
+          if (uploadedFile) {
+            handleUpload(uploadedFile);
+          }
+        }}
+      />
 
       <main className={`app-main ${file ? 'app-main-document' : 'app-main-landing'}`}>
         {file ? (
           <div className="workspace-layout">
+            <aside className="history-stage">
+              <div className="panel-head panel-head-dark">
+                <div className="panel-title-block">
+                  <span className="eyebrow">Document History</span>
+                  <h2>Recent uploads</h2>
+                  <p className="panel-subcopy">
+                    Reopen a previous PDF or upload a new one anytime.
+                  </p>
+                </div>
+              </div>
+              <div className="history-list">
+                <button
+                  className="upload-button upload-button-primary history-upload"
+                  type="button"
+                  onClick={handleHistoryUploadClick}
+                >
+                  <FileSearch size={14} />
+                  Upload new PDF
+                </button>
+                {uploadHistory.length === 0 ? (
+                  <div className="history-empty">No previous uploads yet.</div>
+                ) : (
+                  uploadHistory.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      className={`history-item ${file?.name === item.name ? 'history-item-active' : ''}`}
+                      onClick={() => handleHistorySelect(item)}
+                    >
+                      <div>
+                        <strong>{item.name}</strong>
+                        <span>{item.uploadedAt}</span>
+                      </div>
+                      <span>{item.analysis ? 'Reviewed' : 'Pending'}</span>
+                    </button>
+                  ))
+                )}
+              </div>
+            </aside>
+
             <section className="document-stage">
               <div className="panel-head panel-head-dark">
                 <div className="panel-title-block">
@@ -265,7 +343,7 @@ export default function App() {
                 </div>
                 <span className="status-pill status-pill-amber">Live preview</span>
               </div>
-              <div className="document-frame">
+              <div className="document-frame slide-in-left">
                 <PDFViewer file={file} />
               </div>
             </section>
