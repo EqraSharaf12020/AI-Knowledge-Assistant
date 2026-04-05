@@ -13,6 +13,28 @@ export default function ChatWindow() {
   
   const scrollRef = useRef(null);
 
+  // Load chat history from localStorage on component mount
+  useEffect(() => {
+    const sessionId = getSessionId();
+    const savedMessages = localStorage.getItem(`chat_history_${sessionId}`);
+    if (savedMessages) {
+      try {
+        const parsedMessages = JSON.parse(savedMessages);
+        if (parsedMessages.length > 0) {
+          setMessages(parsedMessages);
+        }
+      } catch (e) {
+        console.error('Error loading chat history:', e);
+      }
+    }
+  }, []);
+
+  // Save chat history to localStorage whenever messages change
+  useEffect(() => {
+    const sessionId = getSessionId();
+    localStorage.setItem(`chat_history_${sessionId}`, JSON.stringify(messages));
+  }, [messages]);
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
