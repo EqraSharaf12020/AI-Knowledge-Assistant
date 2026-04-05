@@ -1,6 +1,15 @@
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
-import { Download, FileSearch, Home, Shield, Sparkles, Zap } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  FileSearch,
+  Home,
+  Shield,
+  Sparkles,
+  Zap,
+} from 'lucide-react';
 import PDFViewer from './components/PDFViewer';
 import RiskSidebar from './components/RiskSidebar';
 import FileUpload from './components/FileUpload';
@@ -203,6 +212,7 @@ export default function App() {
   const [analysisData, setAnalysisData] = useState(null);
   const [uploadHistory, setUploadHistory] = useState([]);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(true);
   const [comparisonData, setComparisonData] = useState(null);
   const [error, setError] = useState(null);
   const hiddenFileInput = useRef(null);
@@ -328,6 +338,7 @@ export default function App() {
     setComparisonData(null);
     setError(null);
     setIsComparisonMode(false);
+    setIsHistoryOpen(true);
   };
 
   const handleExportAnalysis = () => {
@@ -414,48 +425,72 @@ export default function App() {
 
       <main className={`app-main ${file || comparisonData ? 'app-main-document' : 'app-main-landing'}`}>
         {file || comparisonData ? (
-          <div className={`workspace-layout ${comparisonData ? 'comparison-mode' : ''}`}>
-            <aside className="history-stage">
-              <div className="panel-head panel-head-dark">
-                <div className="panel-title-block">
-                  <span className="eyebrow">Document History</span>
-                  <h2>Recent uploads</h2>
-                  <p className="panel-subcopy">
-                    Reopen a previous PDF or upload a new one anytime.
-                  </p>
+          <div
+            className={`workspace-layout ${comparisonData ? 'comparison-mode' : ''} ${!isHistoryOpen ? 'history-collapsed' : ''}`}
+          >
+            {isHistoryOpen ? (
+              <aside className="history-stage">
+                <div className="panel-head panel-head-dark">
+                  <div className="panel-title-block">
+                    <span className="eyebrow">Document History</span>
+                    <h2>Recent uploads</h2>
+                    <p className="panel-subcopy">
+                      Reopen a previous PDF or upload a new one anytime.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    className="history-toggle-button"
+                    onClick={() => setIsHistoryOpen(false)}
+                    aria-label="Hide document history"
+                    title="Hide history"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
                 </div>
-              </div>
-              <div className="history-list">
-                <button
-                  className="upload-button upload-button-primary history-upload"
-                  type="button"
-                  onClick={handleHistoryUploadClick}
-                >
-                  <FileSearch size={14} />
-                  Upload new PDF
-                </button>
-                {uploadHistory.length === 0 ? (
-                  <div className="history-empty">No previous uploads yet.</div>
-                ) : (
-                  uploadHistory.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      className={`history-item ${file?.name === item.name ? 'history-item-active' : ''}`}
-                      onClick={() => handleHistorySelect(item)}
-                    >
-                      <div>
-                        <strong>{item.name}</strong>
-                        <span>{item.uploadedAt}</span>
-                      </div>
-                      <span>{item.analysis ? 'Reviewed' : 'Pending'}</span>
-                    </button>
-                  ))
-                )}
-              </div>
-            </aside>
+                <div className="history-list">
+                  <button
+                    className="upload-button upload-button-primary history-upload"
+                    type="button"
+                    onClick={handleHistoryUploadClick}
+                  >
+                    <FileSearch size={14} />
+                    Upload new PDF
+                  </button>
+                  {uploadHistory.length === 0 ? (
+                    <div className="history-empty">No previous uploads yet.</div>
+                  ) : (
+                    uploadHistory.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={`history-item ${file?.name === item.name ? 'history-item-active' : ''}`}
+                        onClick={() => handleHistorySelect(item)}
+                      >
+                        <div>
+                          <strong>{item.name}</strong>
+                          <span>{item.uploadedAt}</span>
+                        </div>
+                        <span>{item.analysis ? 'Reviewed' : 'Pending'}</span>
+                      </button>
+                    ))
+                  )}
+                </div>
+              </aside>
+            ) : null}
 
             <section className="document-stage">
+              {!isHistoryOpen ? (
+                <button
+                  type="button"
+                  className="history-toggle-button history-toggle-button-floating"
+                  onClick={() => setIsHistoryOpen(true)}
+                  aria-label="Show document history"
+                  title="Show history"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              ) : null}
               <div className="panel-head panel-head-dark">
                 <div className="panel-title-block">
                   <span className="eyebrow">Uploaded file</span>
