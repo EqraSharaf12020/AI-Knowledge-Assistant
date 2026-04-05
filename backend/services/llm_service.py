@@ -42,7 +42,7 @@ def get_legal_analysis(document_text: str):
         print(f"❌ Groq API Error (analysis): {str(e)}")
         return f"Error: {str(e)}"
 
-
+#service
 def get_chat_answer(rag_prompt: str):
     """
     Answers a user question using RAG context.
