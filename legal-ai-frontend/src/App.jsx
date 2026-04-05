@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
+import { getSessionId } from './utils/session';
 import {
   ChevronLeft,
   ChevronRight,
@@ -256,7 +257,10 @@ export default function App() {
       formData.append('file2', uploadedFile2);
 
       try {
-        const response = await axios.post('http://localhost:8000/analyze/compare', formData, { timeout: 60000 });
+        const response = await axios.post('http://localhost:8000/analyze/compare', formData, {
+          timeout: 60000,
+          headers: { 'X-Session-Id': getSessionId() },
+        });
         if (response.data && response.data.analysis1 && response.data.analysis2) {
           setComparisonData(response.data);
         } else {
@@ -295,7 +299,10 @@ export default function App() {
       formData.append('file', uploadedFile);
 
       try {
-        const response = await axios.post('http://localhost:8000/analyze/', formData, { timeout: 60000 });
+        const response = await axios.post('http://localhost:8000/analyze/', formData, {
+          timeout: 60000,
+          headers: { 'X-Session-Id': getSessionId() },
+        });
         if (response.data && response.data.analysis) {
           setAnalysisData(response.data.analysis);
           setUploadHistory((prev) =>

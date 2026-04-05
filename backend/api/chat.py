@@ -1,24 +1,31 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header
 from pydantic import BaseModel
-from services.vector_service import vector_store
+from typing import Optional
+from services.vector_service import search
 from services.llm_service import get_chat_answer
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
+
 class ChatRequest(BaseModel):
     question: str
 
+
 @router.post("/")
-async def chat_with_document(request: ChatRequest):
-    # 1. SEARCH: Get relevant context from Vector DB
-    context_chunks = vector_store.search(request.question, top_k=3)
+async def chat_with_document(
+    request: ChatRequest,
+    x_session_id: Optional[str] = Header(None),
+):
+    if not x_session_id or not x_session_id.strip():
+        raise HTTPException(status_code=400, detail="Missing X-Session-Id header.")
+
+    session_id = x_session_id.strip()
+    context_chunks = search(session_id, request.question, top_k=3)   # ← isolated
 
     if not context_chunks or "No documents" in str(context_chunks[0]):
         return {"answer": "I don't have any documents in my memory. Please upload a PDF first!"}
 
     context_text = "\n\n".join(context_chunks)
-
-    # 2. PROMPT: Build the RAG prompt with context
     rag_prompt = f"""Use the following document context to answer the user's question.
 
 CONTEXT:
@@ -27,8 +34,6 @@ CONTEXT:
 QUESTION:
 {request.question}
 """
-
-    # 3. GENERATE: Get answer from LLM with system prompt
     try:
         answer = get_chat_answer(rag_prompt)
         return {"answer": answer}
