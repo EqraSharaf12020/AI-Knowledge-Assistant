@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { BotMessageSquare, MessageSquare, SendHorizontal, X } from 'lucide-react';
+import { getSessionId } from '../utils/session';
 
 export default function ChatWindow() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,9 +32,11 @@ export default function ChatWindow() {
     try {
       console.log("Sending to Backend:", trimmedInput);
       
-      const response = await axios.post('http://localhost:8000/chat/', { 
-        question: trimmedInput 
-      });
+      const response = await axios.post(
+        'http://localhost:8000/chat/',
+        { question: trimmedInput },
+        { headers: { 'X-Session-Id': getSessionId() } },
+      );
 
       console.log("Backend Raw Response:", response.data);
 
