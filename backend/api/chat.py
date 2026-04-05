@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Header
 from pydantic import BaseModel
 from typing import Optional
-from services.vector_service import search, add_chat_message, get_chat_history
+from services.vector_service import search, search_global, add_chat_message, get_chat_history
 from services.llm_service import get_chat_answer
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
@@ -20,10 +20,47 @@ async def chat_with_document(
         raise HTTPException(status_code=400, detail="Missing X-Session-Id header.")
 
     session_id = x_session_id.strip()
-    context_chunks = search(session_id, request.question, top_k=3)   # ← isolated
 
-    if not context_chunks or "No documents" in str(context_chunks[0]):
+    # Search both session-specific and global knowledge base
+    session_chunks = search(session_id, request.question, top_k=3)
+    global_chunks = search_global(request.question, top_k=3)
+
+    # Combine and sort by score, take top 5
+    all_chunks = session_chunks + global_chunks
+    all_chunks.sort(key=lambda x: x.get("score", 0), reverse=True)
+    context_chunks = all_chunks[:5]
+
+    # Check if no documents available
+    if not context_chunks:
         return {"answer": "I don't have any documents in my memory. Please upload a PDF first!"}
+    
+    # Handle case where search returns error message
+    if len(context_chunks) == 1 and "No documents found" in context_chunks[0].get("text", ""):
+        return {"answer": "I don't have any documents in my memory. Please upload a PDF first!"}
+
+    # Build context text from chunks (now dicts with metadata)
+    context_parts = []
+    section_references = set()
+    source_references = set()
+
+    for chunk in context_chunks:
+        chunk_text = chunk.get("text", "")
+        chunk_section = chunk.get("section", "General")
+        chunk_source = chunk.get("source", "")
+
+        if chunk_text and "No documents" not in chunk_text:
+            context_parts.append(chunk_text)
+            section_references.add(chunk_section)
+            if chunk_source:
+                source_references.add(chunk_source)
+
+    if not context_parts:
+        return {"answer": "I don't have any documents in my memory. Please upload a PDF first!"}
+
+    # Format section references as comma-separated list
+    section_references_str = ", ".join(sorted(section_references)) if section_references else "General"
+    if source_references:
+        section_references_str += f" (from: {', '.join(sorted(source_references))})"
 
     # Get conversation history
     chat_history = get_chat_history(session_id)
@@ -37,11 +74,13 @@ async def chat_with_document(
             history_lines.append(f"{role}: {msg['message']}")
         history_text = "\n".join(history_lines) + "\n\n"
 
-    context_text = "\n\n".join(context_chunks)
+    context_text = "\n\n".join(context_parts)
     rag_prompt = f"""Use the following document context and conversation history to answer the user's question.
 
 DOCUMENT CONTEXT:
 {context_text}
+
+SECTIONS REFERENCED: {section_references_str}
 
 CONVERSATION HISTORY:
 {history_text}User: {request.question}

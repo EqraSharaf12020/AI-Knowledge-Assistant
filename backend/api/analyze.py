@@ -2,9 +2,9 @@ from fastapi import APIRouter, UploadFile, File, HTTPException, Header
 import shutil, os, json, re, difflib
 from typing import Optional
 
-from services.pdf_service import extract_text_from_pdf
+from services.document_service import extract_text_from_file
 from services.llm_service import get_legal_analysis
-from services.vector_service import add_documents
+from services.vector_service import add_documents, get_session_stats
 from rag.chunking import split_text_into_chunks
 
 router = APIRouter(prefix="/analyze", tags=["Analysis"])
@@ -32,11 +32,12 @@ async def analyze_document(
         with open(temp_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
 
-        document_text = extract_text_from_pdf(temp_path)
+        document_text = extract_text_from_file(temp_path)
         if not document_text or "Error" in document_text:
-            raise HTTPException(status_code=500, detail="Could not read PDF content.")
+            raise HTTPException(status_code=500, detail="Could not read document content.")
 
-        chunks = split_text_into_chunks(document_text)
+        # Get chunks with metadata
+        chunks = split_text_into_chunks(document_text, return_metadata=True)
         add_documents(session_id, chunks)           # ← isolated per session
 
         raw_result = get_legal_analysis(document_text[:8000])
@@ -48,12 +49,16 @@ async def analyze_document(
             print(f"⚠️ Could not parse LLM JSON output: {raw_result[:200]}")
             analysis_parsed = {"risks": [], "raw": raw_result}
 
+        # Get session stats
+        session_stats = get_session_stats(session_id)
+
         os.remove(temp_path)
 
         return {
             "status": "success",
             "fileName": file.filename,
             "totalChunksStored": len(chunks),
+            "sessionStats": session_stats,
             "analysis": analysis_parsed,
         }
 
@@ -83,11 +88,11 @@ async def compare_documents(
         with open(temp_path2, "wb") as buffer:
             shutil.copyfileobj(file2.file, buffer)
 
-        text1 = extract_text_from_pdf(temp_path1)
-        text2 = extract_text_from_pdf(temp_path2)
+        text1 = extract_text_from_file(temp_path1)
+        text2 = extract_text_from_file(temp_path2)
 
         if not text1 or "Error" in text1 or not text2 or "Error" in text2:
-            raise HTTPException(status_code=500, detail="Could not read PDF content.")
+            raise HTTPException(status_code=500, detail="Could not read document content.")
 
         differ = difflib.HtmlDiff()
         diff_html = differ.make_file(
@@ -130,9 +135,13 @@ async def compare_documents(
             - sum(weights.get(r.get("type", "Low"), 0) for r in risks1)
         )
 
-        chunks1 = split_text_into_chunks(text1)
-        chunks2 = split_text_into_chunks(text2)
+        # Get chunks with metadata
+        chunks1 = split_text_into_chunks(text1, return_metadata=True)
+        chunks2 = split_text_into_chunks(text2, return_metadata=True)
         add_documents(session_id, chunks1 + chunks2)   # ← isolated per session
+
+        # Get session stats
+        session_stats = get_session_stats(session_id)
 
         os.remove(temp_path1)
         os.remove(temp_path2)
@@ -151,6 +160,7 @@ async def compare_documents(
                 "score_delta": score_delta,
             },
             "total_chunks_stored": len(chunks1) + len(chunks2),
+            "sessionStats": session_stats,
         }
 
     except Exception as e:
