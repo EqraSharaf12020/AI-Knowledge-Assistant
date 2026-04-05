@@ -9,4 +9,9 @@ langchain
 pydantic
 numpy
 python-dotenv
+python-docx
+
+# Optional: For OCR support (scanned PDFs)
+# Uncomment to install: pdf2image, pytesseract, pillow
+# Also requires: https://github.com/UB-Mannheim/tesseract/wiki
 
