@@ -1,0 +1,12 @@
+[
+  {
+    "role": "user",
+    "message": "hi",
+    "timestamp": 1775761167
+  },
+  {
+    "role": "assistant",
+    "message": "Hello. I'm here to help you understand contracts related to bail and the criminal justice system. What would you like to know? \n\nPlain English: I'm ready to assist you with your questions about bail contracts.",
+    "timestamp": 1775761167
+  }
+]

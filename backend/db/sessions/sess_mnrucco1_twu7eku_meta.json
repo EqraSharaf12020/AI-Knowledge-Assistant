@@ -1,0 +1,18 @@
+[
+  {
+    "text": "Page 1: Bail Bond Agreement\nIN THE COURT OF SESSIONS / MAGISTRATE COURT\nCase No: _______ | FIR No: _______ | Police Station: _______\nThis Bail Bond Agreement is executed on this ___ day of ______, 20__.\nAccused: __________________ | Address: __________________\nSureties: __________________\n\nPage 2: Nature of Bail\nGranted under Sections 437, 438, 439 CrPC.\nIncludes Regular, Anticipatory, and Sessions Court Bail.\nAccused must comply with all conditions imposed.\n\nPage 3: Bail Amount & Surety\nBail Amount: ■________ | Sureties required.\nRisk: Failure to appear → forfeiture and arrest warrant.\n\nPage 4: Conditions of Bail\nMust appear in court, not leave India, no evidence tampering.\nRisk: Witness tampering → cancellation of bail.\n\nPage 5: Travel Restrictions\nCannot leave jurisdiction without approval.\nRisk: Absconding → proclaimed offender, property attachment.\n\nPage 6: Types of Bail\nRegular Bail, Anticipatory Bail, Interim Bail, Default Bail.\nRisk: Misuse → stricter legal action.",
+    "chunk_index": 0,
+    "section": "General",
+    "char_start": 0,
+    "char_end": 989,
+    "word_count": 148
+  },
+  {
+    "text": "without approval.\nRisk: Absconding → proclaimed offender, property attachment.\n\nPage 6: Types of Bail\nRegular Bail, Anticipatory Bail, Interim Bail, Default Bail.\nRisk: Misuse → stricter legal action.\nPage 7: Financial Risks\nSureties liable for payment if accused defaults.\nRisk: Property loss and recovery proceedings.\n\nPage 8: Legal Compliance\nMust follow IPC and CrPC.\nRisk: Violation → fresh charges and cancellation.\n\nPage 9: Digital Evidence Risks\nMust not destroy or alter digital evidence.\nRisk: Obstruction of justice charges.\n\nPage 10: Conclusion\nValid until trial completion.\nGrounds for cancellation: non-appearance, violations.\nSignatures: Accused, Sureties, Magistrate.",
+    "chunk_index": 1,
+    "section": "General",
+    "char_start": 788,
+    "char_end": 1472,
+    "word_count": 94
+  }
+]
