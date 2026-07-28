@@ -1,3 +1,4 @@
+import os
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -5,7 +6,6 @@ from api import upload, chat, analyze
 
 app = FastAPI(title="Legal AI Knowledge Assistant")
 
-# Essential for React Frontend to connect
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,5 +22,5 @@ def home():
     return {"status": "online", "message": "Legal AI Backend is Running"}
 
 if __name__ == "__main__":
-    # Using 0.0.0.0 makes it accessible on your local network/MNNIT wifi
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
