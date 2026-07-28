@@ -7,7 +7,7 @@ import difflib
 
 from services.pdf_service import extract_text_from_pdf
 from services.llm_service import get_legal_analysis
-from services.vector_service import vector_store
+from services.vector_service import add_global_documents
 from rag.chunking import split_text_into_chunks
 
 router = APIRouter(prefix="/analyze", tags=["Analysis"])
@@ -33,7 +33,7 @@ async def analyze_document(file: UploadFile = File(...)):
 
         # 4. Split into chunks and store in Vector DB (for /chat)
         chunks = split_text_into_chunks(document_text)
-        vector_store.add_documents(chunks)
+        add_global_documents(chunks, source_file=file.filename)
 
         # 5. Get structured risk analysis from LLM (first 8000 chars)
         raw_result = get_legal_analysis(document_text[:8000])
@@ -138,10 +138,11 @@ async def compare_documents(file1: UploadFile = File(...), file2: UploadFile = F
         score2 = sum(weights.get(r.get("type", "Low"), 0) for r in risks2)
         score_delta = score2 - score1
 
-        # Store chunks from both in vector DB (for chat)
+        # Store chunks from both in vector DB (for chat), tagged with their own source file
         chunks1 = split_text_into_chunks(text1)
         chunks2 = split_text_into_chunks(text2)
-        vector_store.add_documents(chunks1 + chunks2)
+        add_global_documents(chunks1, source_file=file1.filename)
+        add_global_documents(chunks2, source_file=file2.filename)
 
         # Cleanup
         os.remove(temp_path1)

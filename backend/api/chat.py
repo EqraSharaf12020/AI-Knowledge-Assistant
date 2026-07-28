@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from services.vector_service import vector_store
+from services.vector_service import search_global
 from services.llm_service import get_chat_answer
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
@@ -10,13 +10,13 @@ class ChatRequest(BaseModel):
 
 @router.post("/")
 async def chat_with_document(request: ChatRequest):
-    # 1. SEARCH: Get relevant context from Vector DB
-    context_chunks = vector_store.search(request.question, top_k=3)
+    # 1. SEARCH: Get relevant context from the global knowledge base
+    context_chunks = search_global(request.question, top_k=3)
 
-    if not context_chunks or "No documents" in str(context_chunks[0]):
+    if not context_chunks:
         return {"answer": "I don't have any documents in my memory. Please upload a PDF first!"}
 
-    context_text = "\n\n".join(context_chunks)
+    context_text = "\n\n".join(chunk["text"] for chunk in context_chunks)
 
     # 2. PROMPT: Build the RAG prompt with context
     rag_prompt = f"""Use the following document context to answer the user's question.
