@@ -439,5 +439,932 @@
     "char_end": 31751,
     "word_count": 35,
     "source": "Bail in the Criminal Justice System.pdf"
+  },
+  {
+    "text": "1 | P a g e",
+    "chunk_index": 49,
+    "section": "General",
+    "char_start": 0,
+    "char_end": 16,
+    "word_count": 6,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "CODE OF CRIMINAL PROCEDURE I                                                 \n \n \nTOPIC: BAIL \n \n \n“The issue of bail is one of liberty, justice, public safety and burden of the public \ntreasury, all of which insist that a developed jurisprudence of bail is integral to \na socially sensitized judicial process”. – Justice V.R. Krishna Iyer  \n \n \n \n2 | P a g e",
+    "chunk_index": 50,
+    "section": "CODE OF CRIMINAL PROCEDURE I",
+    "char_start": 16,
+    "char_end": 444,
+    "word_count": 53,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "TABLE OF CONTENT \n \n \n \n \n \nPARTICULARS PG. \nList of cases 4-5 \nIntroduction  6-7 \nHistory  8-9 \nObjective of Bail  10 \nTypes of Bail \n Bail in Bailable offences \n Bail in Non Bailable offences \n Anticipatory Bail \n Bail on Default \n Interim Bail \n Bail after Conviction \n13-25 \n \n \nCancellation of bail 26 \nConclusion \n \n27 \nReference 28 \n \n \n  \n3 | P a g e",
+    "chunk_index": 51,
+    "section": "TABLE OF CONTENT",
+    "char_start": 444,
+    "char_end": 813,
+    "word_count": 60,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "LIST OF CASES",
+    "chunk_index": 52,
+    "section": "LIST OF CASES",
+    "char_start": 813,
+    "char_end": 828,
+    "word_count": 3,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "CASE NAME CITATION \nAdri Dharamdas v State of West Bengal AIR 2005 SC 1057. \nAmar Nath Singh v The State of Jharkhand Case No.4644 of 2016 \nAtul Tripathi V. State of UP Crl. Appeal No.NO.1516/2014 \nBabu Singh v. State of U.P (1978) 1 SCC 579 \nBalchand Jain v. State of M.P AIR 1977 SC 2447 \nDeepak Bajaj v State of Maharashtra (2008) 16 SCC 14 \nDeepak Khosla v state of NCT of Delhi & \nOrs \nCRL.M.C.--663/2017. \nDhiren Prafulbhai Shah v State of Gujarat 2016 CriLJ 2217 \n \nDolat Ram v. State of Haryana (1955) 1 SCC 349. \nDr Subhash Kashinath Mahajan v The State \nOf Maharashtra And Anr \nCRIMINAL APPEAL NO.416 OF 2018. \n \nGovind Prasad v. State of West Bengal. 1975 CriLJ 1249. \nGudikanti Narasimhulu v. Public Prosecutor (1978) 1 SCC 240. \nGurbaksh Singh Sibbia v. State of Punjab. AIR 1980 SC 1632 \nGurcharan Singh v. State (Delhi Admn.) (1978) 1 SCC 118. \nKalyan Chandra Sarkar v. Rajesh Ranjan, (2005) 2 SCC 42 \nKamlendra Pratap Singh v State of U.P.  \n(2009) 4 SCC 437.",
+    "chunk_index": 53,
+    "section": "CASE NAME CITATION",
+    "char_start": 828,
+    "char_end": 1805,
+    "word_count": 173,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "Punjab. AIR 1980 SC 1632 \nGurcharan Singh v. State (Delhi Admn.) (1978) 1 SCC 118. \nKalyan Chandra Sarkar v. Rajesh Ranjan, (2005) 2 SCC 42 \nKamlendra Pratap Singh v State of U.P.  \n(2009) 4 SCC 437.\nKanhaiya Kumar v State of NCT of Delhi W.P.(CRL) 558/2016. \nLal Kamlendra v State (2009) 4 SCC 437. \nLalita Kumari v State of U.P (2014) 2 SCC 1. \nMd Shahabuddin v State of Bihar Cr.Misc. No.35785 of 2016 \nMoti Ram v. State of M.P (1978) 4 SCC 47 \nNirmal Jeet Kaur v State of Madhya Pradesh \nand Ors. \n(2004) 7 SCC 558 \nPrahlad Singh Bhati v. NCT (2001) 4 SCC 280 \nPuran vs. Ramvilas AIR 2001 SC 2013. \nR.J Sharma Vs. R.P. Patankar 1993 Cri.L.J. 1993 [Bombay]. \n4 | P a g e  \n \nRakesh Kumar Paul vs. State of Assam SLP (CRL.) NO. 2009 OF 2017 \nRam Govind Upadhya Vs. Sudarshan Singh 2002 Cr.L.J 1849 (S.C.) \n \nRasiklal v. Kishore s/o Khanchand \nWadhwani \nAIR 2009 SC 1341 \nSanjay Chandra v CBI (2012) 1 SCC 40 \nSanjay Dutt v. State, Through CBI (1994) 5 SCC 410.",
+    "chunk_index": 54,
+    "section": "CASE NAME CITATION",
+    "char_start": 1604,
+    "char_end": 2569,
+    "word_count": 180,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "Vs. Sudarshan Singh 2002 Cr.L.J 1849 (S.C.) \n \nRasiklal v. Kishore s/o Khanchand \nWadhwani \nAIR 2009 SC 1341 \nSanjay Chandra v CBI (2012) 1 SCC 40 \nSanjay Dutt v. State, Through CBI (1994) 5 SCC 410.\nShakuntala Devi v State of UP 1986 CriLJ 365. \nSiddharam Satlingappa Mhetre v. State of \nMaharashtra \n(2011) 1 SCC 694 \nSiddharam v State (2011) 1 SCC 694. \n \nState of Kerala v. Raneef (2011) 1 SCC 784 \nState of M.P. & Anr. v. Ramkishan Balothia (1995) 3 SCC 221. \n \nState of Rajasthan v. Balchand (1977) 4 SCC 308 \nState of U.P. v. Amarmani Tripathi (2005) 8 SCC 21. \nState of U.P. v. Laxmi Brahman AIR 1983 SC 439 \nSuddu kumar vs. State of Bihar Criminal Appeal (DB) 583 of 2015 \nSukhwant Singh v State (2009) 7 SCC 559. \n \nSuresh Jain v. State of Maharashtra (2013) 3 SCC 77. \nVaman Narain Ghiya v. State of Rajasthan (2009) 2 SCC 281. \n \n \n \n \n  \n5 | P a g e  \n \nINTRODUCTION \n‘Bail’ is derived from the old French verb ‘baillier’ meaning to ‘give or deliver’. 1 The term",
+    "chunk_index": 55,
+    "section": "CASE NAME CITATION",
+    "char_start": 2368,
+    "char_end": 3346,
+    "word_count": 177,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "77. \nVaman Narain Ghiya v. State of Rajasthan (2009) 2 SCC 281. \n \n \n \n \n  \n5 | P a g e  \n \nINTRODUCTION \n‘Bail’ is derived from the old French verb ‘baillier’ meaning to ‘give or deliver’. 1 The term\nbail has not been defined in the Criminal Procedure Code ( herein after referred to as  CrPc)2, \nnevertheless, the word ‘Bail’ has been used in the Cr.P.C. several times and remains one of \nthe vital concepts of criminal justice system in consonance with the fundamental principles \nenshrined in Parts III and IV of the Constitution along with the protection of human rights as \nprescribed under International treaties/ covenants.  \nWharton’s Lexicon3 and Stroud’s Judicial Dictionary 4 defines bail as “the setting free of the \ndefendant by releasing him from the custody of law and entrusting him to the custody of his \nsureties who are liable to produce him to appear for his trial at a specific date and time.”",
+    "chunk_index": 56,
+    "section": "CASE NAME CITATION",
+    "char_start": 3145,
+    "char_end": 4063,
+    "word_count": 154,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "g free of the \ndefendant by releasing him from the custody of law and entrusting him to the custody of his \nsureties who are liable to produce him to appear for his trial at a specific date and time.”\n According to Halsbury’s Laws of England: 5 “..the effect of granting bail is not to set the \ndefendant (accused) free, but to release him from the custody of law and to entrust him to the \ncustody of his sureties who are bound to produce him to appear at his trial at a specified time \nand place. The sureties may seize their principal at any time and may discharge themselves \nby handing him over to the custody of the law and he will then be imprisoned.  \nThe literal meaning of the word “bail” is surety. 6 Bail, therefore, refers to release from \ncustody, either on personal bond or with sureties. Bail relies on releas e subject to monetary \nassurance either one’s own assurance (also called personal bond / recognizance) or through",
+    "chunk_index": 57,
+    "section": "CASE NAME CITATION",
+    "char_start": 3862,
+    "char_end": 4803,
+    "word_count": 169,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "release from \ncustody, either on personal bond or with sureties. Bail relies on releas e subject to monetary \nassurance either one’s own assurance (also called personal bond / recognizance) or through\nthird party sureties. The Supr eme Court has also reiterated this definition in the Moti Ram \nCase7. \nAccording to Black’s Law Dictionary, 8 what is contemplated by bail is to “procure the \nrelease of a person from legal custody, by undertaking that he/she shall appear at the time and \nplace designated and submit him/herself to the jurisdiction and judgment of the court.”.  Bail \nhas been defined in the Law Lexicon  as security for the appearance of the accused person on",
+    "chunk_index": 58,
+    "section": "CASE NAME CITATION",
+    "char_start": 4602,
+    "char_end": 5340,
+    "word_count": 111,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "1 The Report No.268 of the Law Commission of India, on bail reforms, titled “Amendments to Criminal \nProcedure Code, 1973",
+    "chunk_index": 59,
+    "section": "1",
+    "char_start": 5340,
+    "char_end": 5463,
+    "word_count": 20,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "2 See Vaman Narain Ghiya v. State of Rajasthan, (2009) 2 SCC 281.",
+    "chunk_index": 60,
+    "section": "2",
+    "char_start": 5463,
+    "char_end": 5531,
+    "word_count": 13,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "3 Law lexicon by Ramanth Iyer, (3rd ed). \n4 4th Edn., 1971.",
+    "chunk_index": 61,
+    "section": "3",
+    "char_start": 5531,
+    "char_end": 5592,
+    "word_count": 12,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "5 Halsbury’s Laws of England, , Vol II para 166 ( 4th Edn., 1998)",
+    "chunk_index": 62,
+    "section": "5",
+    "char_start": 5592,
+    "char_end": 5660,
+    "word_count": 14,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "6 Sunil Fulchand Shah v. Union of India, AIR 2000 SC 1023  \n7 (1978) 4 SCC 47.",
+    "chunk_index": 63,
+    "section": "6",
+    "char_start": 5660,
+    "char_end": 5740,
+    "word_count": 17,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "8 Black's Law Dictionary 177 (4th ed.) \n6 | P a g e  \n \ngiving which he is released pending trial or investigation.  Govind Prasad v. State of West \nBengal.9  \nThe bail, in lay man’s term, means a guarantee or assurance given by a person  arrested to \nappear before a competent court at a specified time at a specified place. The provisions of law \nwhich govern the bail are p rovided under Chapter XXXIII of  CrPC, which is the premier \nstatute laying down criminal procedure in India.   \nThe concept of the bail involves two conflicting concerns- an individual’s right to liberty and  \nhis right to be presumed innocent until proven guilty against the society’s interest in \nmaintaining  law, order and security. The custody of a person pending the completion of trial \nmay cause great hardships to that person which may include loss of liberty, livelihood during \nthat period.  The object of keepin g an accused person in detention prior to or during the trial",
+    "chunk_index": 64,
+    "section": "8",
+    "char_start": 5740,
+    "char_end": 6705,
+    "word_count": 163,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "f trial \nmay cause great hardships to that person which may include loss of liberty, livelihood during \nthat period.  The object of keepin g an accused person in detention prior to or during the trial\nis not punishment but (1) to prevent repetition of offence with who is charged (2) to seek the \npresence of the accused during the trial and (3) to prevent destruction of evidence. \nThus position with respect to bail can be finally described as what was held in Vaman Narain \nGhiya v. State of Rajasthan ,10 \"Bail\" continues to be understood as a right for assertion of \nfreedom against the State imposing restraints. Since the UN Declaration of Human Righ ts of \n1948, to which India is a signatory, the concept of bail has found a place within the scope of \nhuman rights. The dictionary meaning of the expression \"bail\" denotes a security for \nappearance of a prisoner for his release. Etymologically, the word is derived from an old",
+    "chunk_index": 65,
+    "section": "8",
+    "char_start": 6504,
+    "char_end": 7442,
+    "word_count": 163,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "ace within the scope of \nhuman rights. The dictionary meaning of the expression \"bail\" denotes a security for \nappearance of a prisoner for his release. Etymologically, the word is derived from an old\nFrench verb \"bailer\" which means to \"give\" or \"to deliver\", although another view is that its \nderivation is from the Latin term \"baiulare\", meaning \"to bear a burden\". Bail is a conditional \nliberty.  \nBail may thus be regarded as a mecha nism whereby the State devolves upon the community \nthe function of securing the presence of the prisoners, and at the same time involves \nparticipation of the community in administration of justice. \n. \n  \n                                                           \n9 1975 CriLJ 1249. \n10 (2009) 2 SCC 281. \n7 | P a g e  \n \nHISTORY \nThe concept of bail can be traced back to 399 B.C, when Plato tried to create a bond for \nrelease of Socrates. The modern system of bail evolved from England.",
+    "chunk_index": 66,
+    "section": "8",
+    "char_start": 7241,
+    "char_end": 8176,
+    "word_count": 152,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "009) 2 SCC 281. \n7 | P a g e  \n \nHISTORY \nThe concept of bail can be traced back to 399 B.C, when Plato tried to create a bond for \nrelease of Socrates. The modern system of bail evolved from England.\nIn medieval England, the  sheriffs originally possessed the  sovereign authority to release or \nhold suspected criminals.11 Some sheriffs would exploit the bail for their own gain. \nThe Statute of Westminster  (1275) limited the discretion of sheriffs with respect to the bail. \nAlthough sheriffs still had the authority to fix the amount of bail required, the statute \nstipulates which crimes are bailable and which are not. \nIn the early 17th century,  King Charles I  ordered noblemen to issue him  loans. Those who \nrefused were  imprisoned. Five of the prison ers filed a  habeas corpus  petition arguing that \nthey should not be held indefinitely without trial or bail. In the  Petition of \nRight (1628) Parliament argued that the  King had flouted  Magna Carta  by imprisoning",
+    "chunk_index": 67,
+    "section": "8",
+    "char_start": 7975,
+    "char_end": 8961,
+    "word_count": 164,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "s corpus  petition arguing that \nthey should not be held indefinitely without trial or bail. In the  Petition of \nRight (1628) Parliament argued that the  King had flouted  Magna Carta  by imprisoning\npeople without just cause. \nThe Habeas Corpus Act 1679  states, \"A  Magistrate shall discharge  prisoners from their \nImprisonment taking their Recognizance, with one or more  Surety or Sureties, in any Sum \naccording to the Magistrate's discretion, unless it  shall appear that the Party is committed for \nsuch Matter or offences for which by law the Prisoner is not bailable.\" The  English Bill of \nRights (1689) states that, \"excessive bail hath been required of persons committed in criminal \ncases, to elude the benefit of the laws made for the liberty of the subjects. Excessive bail \nought not to be required.\" This was a precursor of the  Eighth Amendment  to the  US \nConstitution. \nThe Bail Act 1976  was enacted with the aims of creating more conditions by which",
+    "chunk_index": 68,
+    "section": "8",
+    "char_start": 8760,
+    "char_end": 9736,
+    "word_count": 158,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": ". Excessive bail \nought not to be required.\" This was a precursor of the  Eighth Amendment  to the  US \nConstitution. \nThe Bail Act 1976  was enacted with the aims of creating more conditions by which\ndefendants could be denied bail and also redef ining the parameters of fulfilling bail. 12 The \nlegislation outlined that courts were obliged to offer bail to defendants unless a specific \nexception was met. The first of two known exceptions was that the defendant would not \nwillingly surrender and tamper w ith case evidence the second was that insufficient case \nevidence had been collected to allow a defendant to be granted bail. The act also nullified the \nrecognizance system, removing the requirement of paying a specific amount of money and \ninstead arresting  defendants for failing to surrender. Many historians have observed a",
+    "chunk_index": 69,
+    "section": "8",
+    "char_start": 9535,
+    "char_end": 10436,
+    "word_count": 136,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "11 Keiper, Claudia A. (1983). Criminal Justice Reform: A Blueprint. ISBN 9780895268419.",
+    "chunk_index": 70,
+    "section": "11",
+    "char_start": 10436,
+    "char_end": 10525,
+    "word_count": 12,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "12 Dell, Susanne. \"The Bail Act 1976\". The British Journal of Criminology 17.2 (1977): 185-188. Academic \nSearch Complete. Web. 31 October 2017. \n8 | P a g e  \n \ndilemma in which the 1976 Bail Act granted greater power to the courts in handling custody \nbut also pushed them to not put defendants in custody unnecessarily. Legal commentator \nSusanne Bell notes that the act failed to incur universal legal promotion, instead only \nallowing defendants to be provided legal aid after they have been reprimanded. Bell believes \nthat this, among other minor flaws, flawed the legislation, but it was nonetheless a \nspringboard for other practical applications. \nAs a partial amendment to the 1976 Bail Act, the  Criminal Justice Act 2003 , stipulates that \nbail must be denied to defendants who test positive for Class A drugs outlined in the  Misuse \nof Drugs Act 1971.13",
+    "chunk_index": 71,
+    "section": "12",
+    "char_start": 10525,
+    "char_end": 11458,
+    "word_count": 142,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "13Dell, Susanne. “The Bail Act 1976”. The British Journal of Criminology 17.2 (1977): 185 -188. Academic \nSearch Complete. Web. 31 Oct. 2017 \n9 | P a g e",
+    "chunk_index": 72,
+    "section": "13",
+    "char_start": 11458,
+    "char_end": 11616,
+    "word_count": 28,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "OBJECTIVE OF BAIL \nThe objective of bail or purpose of  bail has been put forth by various scholars, most of them \nbeing on similar lines that firstly It helps assure reappearance of the accused a n d \ns e c o n d l y. It  p r e v e n t s t h e un - c o n v i c t e d i n d i v i d u a l s fr o m s u f f e r i n g \nu n n e c e s s a r y imprisonment.  \nHowever the leading authority which could be referred to for explaining the objective of bail \nin detail is Sanjay Chandra v CBI.14 It defined the objective of bail as follows- \nIn bail applications, generally, it has been laid down from the earliest times that the object of \nbail is to  secure the appearance of the accused person at his trial by reasonable amount of \nbail. The object of bail is  neither punitive nor preventative. Deprivation of liberty must be \nconsidered a punishment, unless it can be  required to ensure that an accused person will",
+    "chunk_index": 73,
+    "section": "OBJECTIVE OF BAIL",
+    "char_start": 11616,
+    "char_end": 12528,
+    "word_count": 197,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "ble amount of \nbail. The object of bail is  neither punitive nor preventative. Deprivation of liberty must be \nconsidered a punishment, unless it can be  required to ensure that an accused person will\nstand his trial when called upon. The courts owe more than  verbal respect to the principle \nthat punishment begins after conviction, and that every man is deemed to be  innocent until \nduly tried and duly found guilty. Fr om the earliest times, it was appreciated that detention in  \ncustody pending completion of trial could be a cause of great hardship. From time to time, \nnecessity demands that some un-convicted persons should be held in custody pending trial to \nsecure their attendance at the trial but in such cases, 'necessity' is the operative test. In this \ncountry, it would be quite contrary to  the concept of personal liberty enshrined in the \nConstitution that any person should be punished in respect  of any matter, upon which, he has",
+    "chunk_index": 74,
+    "section": "OBJECTIVE OF BAIL",
+    "char_start": 12327,
+    "char_end": 13283,
+    "word_count": 159,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "e test. In this \ncountry, it would be quite contrary to  the concept of personal liberty enshrined in the \nConstitution that any person should be punished in respect  of any matter, upon which, he has\nnot been convicted or that in any circumstances, he should be deprived  of his liberty upon \nonly the belief that he will tamper with the witnesses if left at liberty, save in the most  \nextraordinary circumstances. Apart from the question of preven tion being the object of a \nrefusal of bail,  one must not lose sight of the fact that any imprisonment before conviction \nhas a substantial punitive content and it would be improper for any Court to refuse bail as a \nmark of disapproval of former conduct  whether the accused has been convicted for it or not \nor to refuse bail to an un -convicted person for the  purpose of giving him a taste of \nimprisonment as a lesson. \n \n  \n                                                           \n14 (2012) 1 SCC 40 \n10 | P a g e",
+    "chunk_index": 75,
+    "section": "OBJECTIVE OF BAIL",
+    "char_start": 13082,
+    "char_end": 14061,
+    "word_count": 166,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "LEGAL PROVISIONS \nThe concept of bail emerges from the conflict between the police power to re strict the liberty \nof a man who is alleged to have committed a crime, and presumption of innocence in favour \nof the person accused of an offence. Bail is regarded as a mechanism whereby the State \nimposes upon the community the function of securing the pres ence of the prisoners, and at \nthe same time involves participation of the community  in administration of justice.  The \nprovisions relating to the grant of bail are enshrined in Chapter XXXIII, under sections 436 -\n450 of Cr.P.C. Offences have been classified into bailable and non bailable and “cognizable” \nand “non -cognizable”. Officer -in-charge of police station, Magistrate, Sessions Court and \nHigh Court are empowered under Cr.P.C. to deal with bail, imposing conditions on bail,  \ncancellation of bail or anticipatory bail.  \nProvisions As To Bail And Bonds \nSec. 436 : In What Cases Bail To Be Taken",
+    "chunk_index": 76,
+    "section": "LEGAL PROVISIONS",
+    "char_start": 14061,
+    "char_end": 15031,
+    "word_count": 159,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "rt are empowered under Cr.P.C. to deal with bail, imposing conditions on bail,  \ncancellation of bail or anticipatory bail.  \nProvisions As To Bail And Bonds \nSec. 436 : In What Cases Bail To Be Taken\nSec436a :Maximum Period For Which An Undertrial Prisoner Can Be Detained  \nSec.437 :When Bail May Taken In Case Of Non-bailable Offence  \nSec.437a:bail Ta Require Accused To Appear Before The Next Appellate Court  \nSec.438 :Directions For Grant Of Bail To Person Apprehending Bail  \nSec.439 :Special Powers Or High Court And Court Of Session Regarding Bai  \nSec.440 :Amount Of Bond And Reduction Thereof  \nSec.441 :Bond Of Accused And Sureties  \nSec.441A :declaration By Sureties  \nSec.442 :Discharge From Custody  \nSEC443 :power to order sufficient bail when that first taken is insufficient.  \nSEC444 :discharge of sureties  \nSEC445 :Deposit instead of recognizance  \nSEC446 :Procedure when bond has been forfeited  \n11 | P a g e  \n \nSEC446A :Cancellation of bail and bail bond",
+    "chunk_index": 77,
+    "section": "LEGAL PROVISIONS",
+    "char_start": 14830,
+    "char_end": 15813,
+    "word_count": 151,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "insufficient.  \nSEC444 :discharge of sureties  \nSEC445 :Deposit instead of recognizance  \nSEC446 :Procedure when bond has been forfeited  \n11 | P a g e  \n \nSEC446A :Cancellation of bail and bail bond\nSEC447 :Procedure in case of insolvency or death of surety or when a bond is forfeited  \nSEC448 :Bond required from minor  \nSEC449 :Appeal from orders under section 446  \nSEC450 :Power to direct levy of amount due on certain recognizance  \n12 | P a g e",
+    "chunk_index": 78,
+    "section": "LEGAL PROVISIONS",
+    "char_start": 15612,
+    "char_end": 16070,
+    "word_count": 75,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "TYPES OF BAIL \nThe Code of Criminal Procedure, 1973 contains elaborate provisions relating to bails. Code \nprovide different kinds of bail :- \n Bail in Bailable offence (Section 436) \n Bail in Non bailable offene (section 437) \n Anticipatory bail (section 438) \n Ad interim bail  \n Bail after conviction (section 389)  \n Bail on default (section 167(2))",
+    "chunk_index": 79,
+    "section": "TYPES OF BAIL",
+    "char_start": 16070,
+    "char_end": 16431,
+    "word_count": 58,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "1. BAIL IN BAILABLE OFFENCE",
+    "chunk_index": 80,
+    "section": "1",
+    "char_start": 16431,
+    "char_end": 16460,
+    "word_count": 5,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "Section 436 provides for the release on bail of a person accused of a bailable offense.  Section \n436 of Cr.PC is mandatory in nature and the court or the police has no discretion in the \nmatter. Any accused person arrested for a bailable offence willing to p rovide bail must be \nreleased.15 The only discretion available with the police is to release the accused either on a \npersonal bond or with sureties. In cases where the accused is unable to provide bail, the \npolice officer must produce the accused person befo re the Magistrate within 24 hours of \narrest as specified under s. 57 of Cr.P.C. Subsequently, when the person accused of an \noffense is produced before a Magistrate and is willing to furnish bail, then the Magistrate \nmust release the accused person and the only discretion available is to release either on \npersonal bond or a bond with sureties. The Magistrate cannot authorize detention of a person",
+    "chunk_index": 81,
+    "section": "Section 436",
+    "char_start": 16460,
+    "char_end": 17385,
+    "word_count": 158,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "the Magistrate \nmust release the accused person and the only discretion available is to release either on \npersonal bond or a bond with sureties. The Magistrate cannot authorize detention of a person\nwho is willing to furnish bail with or without sureties even for the purposes of aiding the \ninvestigation.",
+    "chunk_index": 82,
+    "section": "Section 436",
+    "char_start": 17184,
+    "char_end": 17556,
+    "word_count": 50,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "15 Santh Prakash v. Bhagwandas Sahni, 1969 MLW (Cri) 88.  \n\n13 | P a g e  \n \nIn Rasiklal v. Kishore s/o Khanchand Wadhwani 16 the Supreme Court held that the right to \nbail for bailable offences is an absolute and in -defeasible right and no discretion can be \nexercised as the words of s. 436 Cr.P.C  are imperative and the person accused of an offence \nis bound to be released as soon as the bail is furnished. 17 It further observed that there is no \nneed for the complainant or the public prosecutor to be heard in cases where a person is \ncharged with a bai lable offence. Moreover, the court has no discretion to impose any \nconditions except to demand security. Thus any condition to surrender passport, 18 directing \nthe person accused of an offence to appear before police 19 or the police commissioner 20, or \neven dir ecting such accused person not to take part in public demonstration or make any \npublic speech21 cannot be imposed.",
+    "chunk_index": 83,
+    "section": "15",
+    "char_start": 17556,
+    "char_end": 18502,
+    "word_count": 168,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "of an offence to appear before police 19 or the police commissioner 20, or \neven dir ecting such accused person not to take part in public demonstration or make any \npublic speech21 cannot be imposed.\nThe Hon'ble Supreme Cour t in Vaman Narain Ghiya v. State Of Rajasthan ,22 observed The \nCourt has no jurisdiction when granting  bail under section 436 cr.p.c,  even to impose any \ncondition except demanding of security.  \nAmar Nath Singh  v The State of Jharkhand 23 where a person has failed to comply with the \nconditions of the bail -bond as regards the time and place of attendance, the Court may by  \nvirtue of section 436 (2) refuse to release him on bail, when on a subsequent occasion in the \nsame case he appears before the Court.  \nIn Deepak Khosla v state of NCT of Delhi & Ors 24 Delhi High Court held that grant of bail to \na person accused of bailable  offence is governed by the  provisions of  section 436 of the",
+    "chunk_index": 84,
+    "section": "15",
+    "char_start": 18301,
+    "char_end": 19234,
+    "word_count": 168,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "the Court.  \nIn Deepak Khosla v state of NCT of Delhi & Ors 24 Delhi High Court held that grant of bail to \na person accused of bailable  offence is governed by the  provisions of  section 436 of the\ncode of criminal procedure, 1973. Bail in such cases is compulsory and a person accused of a  \nbailable offence if prepared to furnish bail has the right to be released on bail and the Court \nhas no discretion to deny bail. \nBy Criminal Procedure (Amendment) Act, 2005  sub-section (1) Section 436 was amended to \nmake a mandatory provision that if the a rrested person is accused of a bailable offense is an \nindigent and cannot furnish surety, the courts shall release him on his execution of a bond \nwithout sureties.",
+    "chunk_index": 85,
+    "section": "15",
+    "char_start": 19033,
+    "char_end": 19817,
+    "word_count": 129,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "16 AIR 2009 SC 1341.",
+    "chunk_index": 86,
+    "section": "16",
+    "char_start": 19817,
+    "char_end": 19840,
+    "word_count": 5,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "17 Id.",
+    "chunk_index": 87,
+    "section": "17",
+    "char_start": 19840,
+    "char_end": 19848,
+    "word_count": 2,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "18 Azeez v. State of Kerala, 1984 (2) Crimes 413 (Ker).",
+    "chunk_index": 88,
+    "section": "18",
+    "char_start": 19848,
+    "char_end": 19906,
+    "word_count": 11,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "19 Mir Hasim Ali v. Emperor, AIR 1918 Bom 254.",
+    "chunk_index": 89,
+    "section": "19",
+    "char_start": 19906,
+    "char_end": 19955,
+    "word_count": 10,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "20 Public Prosecutor v. Raghuramaiah (1957) 2 Andh. W. R. 383",
+    "chunk_index": 90,
+    "section": "20",
+    "char_start": 19955,
+    "char_end": 20019,
+    "word_count": 11,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "21 T.N. Jayadeesh Devidas v. State Of Kerala: 1980 Cr.LJ 906  \n22  2009 (2) SCC 281.",
+    "chunk_index": 91,
+    "section": "21",
+    "char_start": 20019,
+    "char_end": 20105,
+    "word_count": 16,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "23 REGULAR BAIL- Case No.4644 of 2016",
+    "chunk_index": 92,
+    "section": "23",
+    "char_start": 20105,
+    "char_end": 20144,
+    "word_count": 7,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "24 CRL.M.C.--663/2017. \n14 | P a g e",
+    "chunk_index": 93,
+    "section": "24",
+    "char_start": 20144,
+    "char_end": 20185,
+    "word_count": 8,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "2. BAIL IN CASE OF NON-BAILABLE OFFENCE \nProvision, as to bail in case of non -bailable offence, is laid down in Section 437 of the \ncode. This section gives discretionary power to the  Court (other than High court or Court of \nSession) to release an accused on bail in a non -bailable case. It list down circumstances when \nbail will not be granted25 or when shall bail be granted with specific condition26 etc.",
+    "chunk_index": 94,
+    "section": "2",
+    "char_start": 20185,
+    "char_end": 20663,
+    "word_count": 73,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "25 Section 437(i) (ii) CrPC.",
+    "chunk_index": 95,
+    "section": "25",
+    "char_start": 20663,
+    "char_end": 20693,
+    "word_count": 5,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "26 Section 437(iii) CrPC. \n\n15 | P a g e  \n \n \nIn Shakuntala Devi v State of UP27 court explained that word “may” has been used in Section \n437 which should not be read as mandatory rather it confer discretionary power on Court. \nIn the case of State of Rajasthan v. Balchand, 28 this Court opined: The basic rule may \nperhaps be tersely put as bail, not jail, except where there are circumstances suggestive of \nfleeing from justice or thwarting the course of justice or creating other tro ubles in the shape \nof repeating offences or intimidating witnesses and the like, by the Petitioner who seeks \nenlargement on bail from the Court. We do not intend to be exhaustive but only illustrative. \nIn the case of Gudikanti Narasimhulu v. Public Prosecu tor,29 V.R. Krishna Iyer, J., sitting as \nChamber Judge, enunciated the principles of bail thus: What, then, is \"judicial discretion\" in \nthis bail context In the elegant words of Benjamin Cardozo:  The Judge, even when he is free,",
+    "chunk_index": 96,
+    "section": "26",
+    "char_start": 20693,
+    "char_end": 21677,
+    "word_count": 168,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "itting as \nChamber Judge, enunciated the principles of bail thus: What, then, is \"judicial discretion\" in \nthis bail context In the elegant words of Benjamin Cardozo:  The Judge, even when he is free,\nis still not wholly free. He is not to innovate at pleasure. He is not a knight -errant roaming at \nwill in pursuit of his own ideal of beauty or of goodness. He is to draw his inspiration from \nconsecrated principles. He is not to yield to spasmodic sentiment, to vague and unregulated  \nbenevolence. He is to exercise a discretion informed by tradition, methodized by analogy, \ndisciplined by system, and subordinated to \"the primordial necessity of order in the social \nlife\". Wide enough in all conscience is the field of discretion that remains \nIn Gurcharan Singh  v. State (Delhi Admn.) ,30 the Court took th e view that i n other non -\nbailable cases the Court will exercise its judicial discretion in favour o f granting bail subject",
+    "chunk_index": 97,
+    "section": "26",
+    "char_start": 21476,
+    "char_end": 22421,
+    "word_count": 162,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "remains \nIn Gurcharan Singh  v. State (Delhi Admn.) ,30 the Court took th e view that i n other non -\nbailable cases the Court will exercise its judicial discretion in favour o f granting bail subject\nto sub -section (3) of Section 437 Code of Criminal Procedure if it d eems necessary to act \nunder it. Unless exceptional circumstances are brought to the notice of the Court which may \ndefeat proper investigation and a fair trial, the Court will not decline to grant bail to a person \nwho is not accused of an offence punishable  with death or imprisonment for life. It is also \nclear that when an accused is brought before the Court of a Magistrate with the allegation \nagainst him of an offence punishable with death or imprisonment for life, he has ordinarily no \noption in the matter but to refuse bail subject, however, to the first proviso to Section 437(1) \nCode of Criminal Procedure and in a case where the Magistrate entertains a reasonable belief",
+    "chunk_index": 98,
+    "section": "26",
+    "char_start": 22220,
+    "char_end": 23181,
+    "word_count": 169,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "arily no \noption in the matter but to refuse bail subject, however, to the first proviso to Section 437(1) \nCode of Criminal Procedure and in a case where the Magistrate entertains a reasonable belief\non the materials that the accused has not been guilt y of such an offence. This, will  however, \n                                                           \n27 1986 CriLJ 365. \n28 (1977) 4 SCC 308. \n29 (1978) 1 SCC 240. \n30 (1978) 1 SCC 118. \n16 | P a g e  \n \nbe an extraordinary occasion since there will be some materials at the stage of initial arrest, \nfor the accusation or for strong suspicion of commission by the person of such an offence. \nIn Babu Singh v. State of U.P.,31 Supreme Court opined: Personal liberty, deprived when bail \nis refused, is too precious a value of our constitutional system recognised under Article \n21that the curial power to negate it is a great trust exercisable, not casually but judicially,",
+    "chunk_index": 99,
+    "section": "26",
+    "char_start": 22980,
+    "char_end": 23912,
+    "word_count": 154,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "ed when bail \nis refused, is too precious a value of our constitutional system recognised under Article \n21that the curial power to negate it is a great trust exercisable, not casually but judicially,\nwith lively concern for the cost to the individual and the community. To glamorise \nimpressionistic orders as discretionary may, on occasions, make a litigative gamble decisive \nof a fundamental right. After all, personal liberty of an accused or convict is fundamental, \nsuffering lawful eclipse only in terms of \"procedure established by law\". The last four words \nof Article 21 are the life of that human right. \nIn the case of Prahlad Singh Bhati v. NCT,32 court held that It has also to be kept in mind that \nfor the purposes of granting the bail the legislature has used the words \"reasonable grounds \nfor believing\" instead of \"the evidence\" which means the court dealing with the grant of bail",
+    "chunk_index": 100,
+    "section": "26",
+    "char_start": 23711,
+    "char_end": 24615,
+    "word_count": 151,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "n mind that \nfor the purposes of granting the bail the legislature has used the words \"reasonable grounds \nfor believing\" instead of \"the evidence\" which means the court dealing with the grant of bail\ncan only satisfy it (sic itself) as to whether there is a genuine case against the accused and that \nthe prosecution will be able to produce prima facie evidence in support of the charge. It is not \nexpected, at this stage, to have the evidence establishing the guilt of the accused beyond \nreasonable doubt. \nSupreme Court, in Kalyan Chandra Sarkar v. Rajesh Ranjan, 33 observed that  \"under the \ncriminal laws of this country, a person accused of offences which are nonbailable, is liable to \nbe detained in custody during the pendency of trial unless he is enlarged on bail in \naccordance with law. Such detention cannot be qu estioned as being violative of Article 21 of \nthe Constitution, since the same is authorized by law. But even persons accused of non -",
+    "chunk_index": 101,
+    "section": "26",
+    "char_start": 24414,
+    "char_end": 25381,
+    "word_count": 166,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "rged on bail in \naccordance with law. Such detention cannot be qu estioned as being violative of Article 21 of \nthe Constitution, since the same is authorized by law. But even persons accused of non -\nbailable offences are entitled to bail if the Court concerned comes to the conclusion that the \nprosecution has failed to es tablish a prima facie case against him and/or if the Court is \nsatisfied by reasons to be recorded that in spite of the existence of prima facie case, there is \nneed to release such accused on bail, where fact situations require it to do so.\" \n                                                           \n31 (1978) 1 SCC 579. \n32 (2001) 4 SCC 280. \n33 (2005) 2 SCC 42 \n17 | P a g e  \n \nIn the case of Siddharam Satlingappa Mhetre v. State of Maharashtra ,34 this Court observed \nthat Personal liberty is a very precious fundamental right and it should be curtailed only when \nit becomes imperative according to the peculiar facts and circumstances of the case.",
+    "chunk_index": 102,
+    "section": "26",
+    "char_start": 25180,
+    "char_end": 26167,
+    "word_count": 167,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "is Court observed \nthat Personal liberty is a very precious fundamental right and it should be curtailed only when \nit becomes imperative according to the peculiar facts and circumstances of the case.\nThis Court, in the case of State of Kerala v. Raneef ,35 has stated that i n deciding bail \napplications an important factor which should certainly be taken into consideration by the \ncourt is the delay in concluding the trial. \nIn Sanjay Chandra v CBI 36 court stated that at the time of considering bail the sentiments of \ncommunity are not to be taken into account  for rejecting a bail plea. Court held that it should \nnot function as per whims of society judges should not work in arbitrary manner. \nMd Shahabuddin v State of Bihar 37 The petitioner requested to renew his prayer of bail, which \nwas earlier rejected vide order dated 03.02.2016 passed in Cr. Misc. No. 30060 of 2015, on the \nground that up-till-now the case has not been committed to the court of Sessions and trial has",
+    "chunk_index": 103,
+    "section": "26",
+    "char_start": 25966,
+    "char_end": 26960,
+    "word_count": 173,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "l, which \nwas earlier rejected vide order dated 03.02.2016 passed in Cr. Misc. No. 30060 of 2015, on the \nground that up-till-now the case has not been committed to the court of Sessions and trial has\nnot even commenced. Court held that there is no direct allegation against the petitioner, he is \nnot the assailant and only on the allegation of conspiracy he is suffering in custody since \n27.11.2014, in all other cases the petitioner has been allowed bail, even  in the case wherein he \nhas been convicted he has also been allowed bail and, as such, he  deserves sympathetic \nconsideration because no one can be detained in custody for indefinite period without putting \nhim on trial.",
+    "chunk_index": 104,
+    "section": "26",
+    "char_start": 26759,
+    "char_end": 27448,
+    "word_count": 117,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "3. ANTICIPATORY BAIL  \nAnticipatory bail means bail in anticipation of an arrest. Any person who apprehends arrest \nunder a non-bailable offence in India can apply for Anticipatory Bail under the provisions of",
+    "chunk_index": 105,
+    "section": "3",
+    "char_start": 27448,
+    "char_end": 27659,
+    "word_count": 32,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "section 438 of The Cod e of Criminal Procedure, 1973.  The words anticipatory bail is neit her \nfound in section 438 nor in its marginal note.  \nScope And Ambit Of Anticipatory Bail  \n                                                           \n34 (2011) 1 SCC 694. \n35 (2011) 1 SCC 784. \n36 (2012) 1 SCC 40.",
+    "chunk_index": 106,
+    "section": "section 438",
+    "char_start": 27659,
+    "char_end": 27968,
+    "word_count": 47,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "37 Patna High Court Cr.Misc. No.35785 of 2016. \n \n18 | P a g e  \n \nThe court in the case of  Siddharam Satlingappa Mhetre v. State of Maharashtra ,38 here \ndiscussed the scope and ambit of anticipatory bail and said that principles rega rding it has \nbeen laid down in the Sibbia’s case should be followed by the court.39  \na. Section438 (1) is to be interpreted in light of Article 21 of the Constitution of India.  \nb. Filing of FIR is not a condition precedent to exercise of power under Section 438. \nc. Order under Section 438 would not affect the right of police to conduct investigation. \nd. Conditions mentioned in Section 437 cannot be read into Section 438.  \ne. Although the power to release on anticipatory bail can be described as of an \n\"extraordinary\" character this would \"not justify the conclusion that the power must \nbe exercised in exceptional cases only.\" Powers are discretionary to be exercised in \nlight of the",
+    "chunk_index": 107,
+    "section": "37",
+    "char_start": 27968,
+    "char_end": 28905,
+    "word_count": 161,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "ribed as of an \n\"extraordinary\" character this would \"not justify the conclusion that the power must \nbe exercised in exceptional cases only.\" Powers are discretionary to be exercised in \nlight of the\nThe expression “anticipatory bail” is also not defined in Cr.P.C. However, the Supreme Court \nin Balchand Jain v. State of M.P. 40 has characterized anticipatory bail to mean ‘a bail in \nanticipation of arrest’. The expression is a misnomer as it represents a futility that bail may be \ngranted by the court in apprehension of an arrest. When a competent court grants \n“anticipatory bail”, it issues an order that in case of an arrest, the person shall be released on \nbail.  \nIt has been held in the Gurbaksh Singh Sibbia v. State of Punjab 41 that s. 438 of Cr.PC was \nenacted to protect those people who are implicated by their rivals in false cas es for the \npurpose of disgracing them or for other purposes by detaining them in jail.42",
+    "chunk_index": 108,
+    "section": "37",
+    "char_start": 28704,
+    "char_end": 29647,
+    "word_count": 163,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "b 41 that s. 438 of Cr.PC was \nenacted to protect those people who are implicated by their rivals in false cas es for the \npurpose of disgracing them or for other purposes by detaining them in jail.42\nIn , State of M.P. & Anr. v. Ramkishan Balothia 43 Section 18 was held not to be violative of \nArticles 14 and 21 of the Constitution. It was observed that exclusion of Se ction 438 Cr.P.C. \nin connection with offences under the Act had to be viewed in the context of prevailing social \nconditions and the apprehension that perpetrators of such atrocities are likely to threaten and \nintimidate the victims and prevent or obstruct them in the prosecution of these offenders, if \nthey are granted anticipatory bail.",
+    "chunk_index": 109,
+    "section": "37",
+    "char_start": 29446,
+    "char_end": 30223,
+    "word_count": 126,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "38 AIR 2011 SC 312.",
+    "chunk_index": 110,
+    "section": "38",
+    "char_start": 30223,
+    "char_end": 30244,
+    "word_count": 5,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "39 AIR 2011 SC 312 para 119.",
+    "chunk_index": 111,
+    "section": "39",
+    "char_start": 30244,
+    "char_end": 30274,
+    "word_count": 7,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "40 AIR 1977 SC 2447.",
+    "chunk_index": 112,
+    "section": "40",
+    "char_start": 30274,
+    "char_end": 30297,
+    "word_count": 5,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "41 AIR 1980 SC 1632.",
+    "chunk_index": 113,
+    "section": "41",
+    "char_start": 30297,
+    "char_end": 30319,
+    "word_count": 5,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "42 Law Commission of India, “Forty-first Report on the Code of Criminal Procedure, 1898” Vol. I (1969) at para \n39.9. \n43 (1995) 3 SCC 221. \n19 | P a g e  \n \nNirmal Jeet Kaur v State of Madhya Pradesh and Ors. 44 Protection in terms of Section 438 is \nlimited that is it can be seeked only till the time person is not in custody. \nIn Adri Dharamdas v State of West Bengal 45 court held the power exercisable under section \n438 is extraordinary and is exercisable only in exceptional cases. Where it appears that a \nperson may be falsely implicated in such cases this power maybe exercised.  \nIn State of U.P. v. Amarmani Tripathi ,46 this Court held as under: It is well settled that the \nmatters to be considered in an application for bail are (i) whether there is any prima facie or \nreasonable ground to believe that the accused had committed the offence; (ii) nature and \ngravity of the charge; (iii) severity of the punishment in the event of conviction; (iv) danger",
+    "chunk_index": 114,
+    "section": "42",
+    "char_start": 30319,
+    "char_end": 31292,
+    "word_count": 175,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "rima facie or \nreasonable ground to believe that the accused had committed the offence; (ii) nature and \ngravity of the charge; (iii) severity of the punishment in the event of conviction; (iv) danger\nof the accused absconding or fleeing, if released on bail; (v) character, behaviour, means, \nposition and standing of the accused; (vi) likelihood of the offence being repeated; (vii) \nreasonable apprehension of the witnesses being tampered with; and (viii) danger, of course, \nof justice being thwarted by grant of bail. \nThe Supreme Court in Siddharam Satlingappa Mhetre v. State of Maharashtr a,47 observed: \nthe law of bail dovetails two conflicting interests namely, the obligation to shield the society \nfrom the hazards of those committing and repeating crimes and on the other hand absolute \nadherence to the fundamental principle of criminal juris prudence - presumption of innocence \nand the sanctity of individual liberty.",
+    "chunk_index": 115,
+    "section": "42",
+    "char_start": 31091,
+    "char_end": 32029,
+    "word_count": 144,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "se committing and repeating crimes and on the other hand absolute \nadherence to the fundamental principle of criminal juris prudence - presumption of innocence \nand the sanctity of individual liberty.\n The Supreme Court emphasized that anticipatory bail is a device to secure the individual's \nliberty, and neither a passport for the commission of crimes nor a shield against any and all \nkinds of accusations likely or unlikely. History and object of introducing the provision of \nanticipatory bail can be traced back to judgment of the Supreme Court in Balchand Jain v. \nState of M.P48 and Gurbaksh Singh Sibbia case.49 \nLalita Kumari v Sta te of U.P 50 it was observed : “While registration of FIR is mandatory, \narrest of the accused immediately on registration of FIR is not at all mandatory. In fact, \nregistration of FIR and arrest of an accused person are two entirely different concepts under \n                                                           \n44 (2004) 7 SCC 558.",
+    "chunk_index": 116,
+    "section": "42",
+    "char_start": 31828,
+    "char_end": 32813,
+    "word_count": 153,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "45 AIR 2005 SC 1057. \n46 (2005) 8 SCC 21.",
+    "chunk_index": 117,
+    "section": "45",
+    "char_start": 32813,
+    "char_end": 32856,
+    "word_count": 10,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "47 AIR 2011 SC 312",
+    "chunk_index": 118,
+    "section": "47",
+    "char_start": 32856,
+    "char_end": 32876,
+    "word_count": 5,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "48 AIR 1977 SC 2447. See also, State v. Anil Sharma AIR 1997 SC 3806.",
+    "chunk_index": 119,
+    "section": "48",
+    "char_start": 32876,
+    "char_end": 32947,
+    "word_count": 15,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "49 Supra, 40. \n50 (2014) 2 SCC 1. \n20 | P a g e  \n \nthe law, and there are several safeguards available against arrest. Moreover, it is also \npertinent to mention that an accused person also has a right to apply for “anticipatory bail” \nunder the provisions of Section 438 of the Code if the conditions mentione d therein are \nsatisfied. Thus, in appropriate cases, he can avoid the arrest under that provision by obtaining \nan order from the court.” \nDhiren Prafulbhai Shah v State of Gujarat 51 the Gujrat High Court in this case dealt with",
+    "chunk_index": 120,
+    "section": "49",
+    "char_start": 32947,
+    "char_end": 33491,
+    "word_count": 97,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "section 438 of CrPC  in the context of Section 18 of atrocities act where court held that “If a \nperson is accused having committed murder, dacoity, rape, etc., he can pray for anticipatory \nbail under Section-438 of the Cr.P.C. on the ground that he is innocent and has been fa lsely \ninvolved, but if a person alleged to have committed an offence under the Atrocities Act, \ncannot pray for an anticipatory bail because of the bar of Section -18 of the Act, and he would \nget arrested. This is the reason for the authorities to guard agai nst any misuse of the \nProvisions of the Atrocities Act.” \nDr Subhash Kashinath Mahajan v The State Of Maharashtra And Anr 52 Exercise of \njurisdiction under Section 438 CrPC  is an extremely important judicial function of a Judge \nand must be entrusted to judicial officers with some experience and good track record. Both \nthe individual and society have vital interest in orders passed by the courts in anticipatory bail \napplications.",
+    "chunk_index": 121,
+    "section": "section 438",
+    "char_start": 33491,
+    "char_end": 34471,
+    "word_count": 167,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "4. BAIL ON DEFAULT",
+    "chunk_index": 122,
+    "section": "4",
+    "char_start": 34471,
+    "char_end": 34492,
+    "word_count": 4,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "Section 167(2) of the Criminal Procedure Code, 1973 empowers judicial magistrates to \nauthorize custody of an accused person in cases wherein investigation cannot be completed in \ntwenty-four hours. It provides for the maximum period of  custody that can be authorized. It \nfurther contains a mandate that if the investigation is not completed within the stipulated \nmaximum period, the accused is to be released on bail whatever may be the nature of \naccusation against him.  \nThe object of this provision manifests the legislative anxiety that once a person’s liberty has \nbeen interfered with, the arrest made without a warrant or a court order, the investigation \nmust be conducted with utmost urgency. 53 Persons who are detained for committing an \noffence and undergoing investigation are statutorily eligible for bail under Section 167(2) of \n                                                           \n51 2016 CriLJ 2217",
+    "chunk_index": 123,
+    "section": "Section 167",
+    "char_start": 34492,
+    "char_end": 35422,
+    "word_count": 135,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "52 CRIMINAL APPEAL NO.416 OF 2018.",
+    "chunk_index": 124,
+    "section": "52",
+    "char_start": 35422,
+    "char_end": 35458,
+    "word_count": 6,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "53Aslam Babalal Desai v. State of Maharashtra, AIR 1993 SC 1.  \n21 | P a g e  \n \nCode after ninety days where the investigation relates to an offence punishable with death, \nimprisonment for life or imprisonment for not less than ten years; and si xty days where the \ninvestigation is relating to any other offence, if the investigating authorities fail to complete \ntheir investigation and file a charge-sheet within this period. \nIn Moti Ram v. State of M.P .,54 this Court, while discussing pre -trial detention, held: The \nconsequences of pre-trial detention are grave. Defendants presumed innocent arc subjected to \nthe psychological and physical deprivations of jail life, usually under more onerous \nconditions than a re imposed on convicted Defendants. The jailed Defendant loses his job if \nhe has one and is prevented from contributing to the preparation of his defence. Equally \nimportant, the burden of his detention frequently falls heavily on the innocent members of hi s",
+    "chunk_index": 125,
+    "section": "53",
+    "char_start": 35458,
+    "char_end": 36445,
+    "word_count": 158,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "es his job if \nhe has one and is prevented from contributing to the preparation of his defence. Equally \nimportant, the burden of his detention frequently falls heavily on the innocent members of hi s\nfamily, therefore it becomes important that a person may be granted bail on default under",
+    "chunk_index": 126,
+    "section": "53",
+    "char_start": 36244,
+    "char_end": 36536,
+    "word_count": 50,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "section 167(2). \nState of U.P. v. Laxmi Brahman ,55 Section 167(2) deals with powers of the magistrate to \ndetain the accused in custody and release him on bail on expi ry of the statutory period. It is \nquite clear that power is conferred on the magistrate to release the accused on bail under the \nproviso. \nIn Sanjay Dutt v. State, Through CBI,56 Supreme Court held that this indefeasible right of the \nperson accused of an offence to be released on bail under s. 167(2) of Cr.PC would not apply \nif the accused person does not file an application to “avail” the right before filing of charge -\nsheet. The Court held that if the charge-sheet is filed after the period specified in s. 167 (2) of \nCr.PC but before the application for bail is considered, then the right to bail under s. 167(2) \nof Cr.P.C would not be available and the application for bail will then be considered only on \nmerits.57 Although the right to avail bail for failure to complete investigation is ‘indefeasible’,",
+    "chunk_index": 127,
+    "section": "section 167",
+    "char_start": 36536,
+    "char_end": 37528,
+    "word_count": 174,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "7(2) \nof Cr.P.C would not be available and the application for bail will then be considered only on \nmerits.57 Although the right to avail bail for failure to complete investigation is ‘indefeasible’,\nit is not automatic. The person accused of an offence should avail the right at an appropriate \nstage and enforce it prior to the filing of the challan.58 Further, such accused person continues \nto remain in custody until he furnishes bail. \n                                                           \n54 (1978) 4 SCC 47.",
+    "chunk_index": 128,
+    "section": "section 167",
+    "char_start": 37327,
+    "char_end": 37851,
+    "word_count": 78,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "55 AIR 1983 SC 439 \n56 (1994) 5 SCC 410.",
+    "chunk_index": 129,
+    "section": "55",
+    "char_start": 37851,
+    "char_end": 37894,
+    "word_count": 10,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "57 Id; See also, Pragya Singh Thakur v. State of Maharashtra, (2011) 10 SCC 445.",
+    "chunk_index": 130,
+    "section": "57",
+    "char_start": 37894,
+    "char_end": 37977,
+    "word_count": 15,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "58 Id. \n22 | P a g e  \n \nIn the case of Suresh Jain v. State of Maharashtra ,59 the Supreme Court clarified that a \nperson accused of an offence acquires an “ indefeasible right” to be granted bail o n meeting \nthe bail conditions if investigation is not completed within the periods mentioned in s. 167(2) \nof Cr.PC, and the Magistrate is mandatorily required to release the accused person. Any \ndetention beyond the prescribed period would be illegal.  \nRecently, Hon’ble Apex Court in Rakesh Kumar Paul vs. State of Assam ,60 held that an \naccused is entitled to statutory bail (default bail) under Section 167(2)(a)(2) of Code of \nCriminal procedure if the police failed to file the charge -sheet within 60 days of his arrest for \nthe offence punishable with ‘imprisonment up to 10 years.",
+    "chunk_index": 131,
+    "section": "58",
+    "char_start": 37977,
+    "char_end": 38771,
+    "word_count": 136,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "5. INTERIM BAIL \nThere is no express legal provision of ad -interim or interim bail. Section 439 CrPC is on the \nHigh Court’s and the Sessions Court’s power to release the accused on bail in custody. \nEvident as it is that Sections 436, 437 and 439 are repository of powers of the court to release \nthe accused in custody on bail. That’s post -arrest. As seen a bove, the newly substituted",
+    "chunk_index": 132,
+    "section": "5",
+    "char_start": 38771,
+    "char_end": 39162,
+    "word_count": 71,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "Section 438 expressly provides for interim bail pending disposal of the plea for anticipatory  \nbail. It’s a important provision as the accused faces the threat of arrest before his application \nfor the bail is decided. Also, it’s consistent with the concept of fundamental right to life and \nliberty under Article 21 of the Constitution of India. Interim bail may be granted when the \ncourt is satisfied that the object of the. However, this kind of bail may be granted at any stage \nof a case by way of court’s inherent power.  \nIn Siddharam v State 61 court held that there is n o express provision for interim bail in \nSections 437 or 439 CrPC. Of course Section 437(2) hints at such a power, but not in explicit \nterms. Even to exercise the power there under, the Magistrate may order notice to the \nprosecution in  which case the accused under arrest can’t avoid detention in jail. Thus, the \ninterim bail regime becomes relevant even in post -arrest matters, leaving alone the interim",
+    "chunk_index": 133,
+    "section": "Section 438",
+    "char_start": 39162,
+    "char_end": 40155,
+    "word_count": 171,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "otice to the \nprosecution in  which case the accused under arrest can’t avoid detention in jail. Thus, the \ninterim bail regime becomes relevant even in post -arrest matters, leaving alone the interim\nbail provision in Section 438 CrPC. Life bereft of liberty is without honour and dignity. \nIn Lal Kamlendra v State ,62 court observed: “….following the decision of this Court in \nKamlendra Pratap Singh v State of U.P. 63 we reiterate that a court hearing a regular bail \napplication has got inherent power to grant interim bail pending final disposal of the bail \n                                                           \n59 (2013) 3 SCC 77.",
+    "chunk_index": 134,
+    "section": "Section 438",
+    "char_start": 39954,
+    "char_end": 40602,
+    "word_count": 99,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "60 SPECIAL LEAVE TO APPEAL (CRL.) NO. 2009 OF 2017 dt.16.08.2017 \n61 (2011) 1 SCC 694. \n62 (2009) 4 SCC 437. \n63 (2009) 4 SCC 437. \n23 | P a g e  \n \napplication. In our opinion, this is the proper view in view of Article 21 of the Constitution of \nIndia which protects the life and liberty of every person……. .. When a person  applies for \nregular bail then the court concerned ordinarily lists that application after a few days so that \nit can look into the case diary which has to be obtained from the police authorities and in the \nmeantime the applicant has to go to jail, here interim bail comes into picture.” \nIn Sukhwant Singh v  State,64 the Supreme Court filled the gap in Sections 437 and 439 \nholding that in the power to grant bail is inherent the power to order interim bail, Which \nmeans the court hearing a plea for regular bai l has inherent power to order interim bail, \npending final disposal of the bail application",
+    "chunk_index": 135,
+    "section": "60",
+    "char_start": 40602,
+    "char_end": 41539,
+    "word_count": 172,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "rant bail is inherent the power to order interim bail, Which \nmeans the court hearing a plea for regular bai l has inherent power to order interim bail, \npending final disposal of the bail application\nDeepak Bajaj v State of Maharashtra 65 court held that in the power to grant bail there is \ninherent power in the court concerned to grant interim bail to a person pend ing final disposal \nof the bail application. \nKanhaiya Kumar v State of NCT of Delhi 66 in this case Kanhaiya Kumar, President of \nJawaharlal Nehru University Students Union , was granted interim bail for a period of six \nmonths on furnishing personal bond in the sum of ₹10,000/- and an undertaking.",
+    "chunk_index": 136,
+    "section": "60",
+    "char_start": 41338,
+    "char_end": 42012,
+    "word_count": 118,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "6. BAIL AFTER CONVICTION",
+    "chunk_index": 137,
+    "section": "6",
+    "char_start": 42012,
+    "char_end": 42040,
+    "word_count": 4,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "Section 389 (1) and (2) of Cr.P.C. deals with a situation where convicted person can get a \nBail from appellate court after filing the criminal appeal. Section 389 (3) deals with a \nsituation wher e the trial court itself can grant a bail to convicted accused enabling him to \nprefer an appeal. \nThe Patna High Court in Suddu kumar vs. State of Bihar 67 has observed that if a prayer for \nsuspension of sentence and release of an appellant on bail, convicted of a capital crime and \nsentenced to undergo imprisonment for life, it is to be considered favourably and he is \nordinarily allowed bail if he has comple ted seven years of incarceration in connection with \nsuch case before conviction and after conviction, taken together when his appeal is not likely \nto be heard on merits in near future, on the ground of possible delay in the disposal of the \nappeal. \n                                                           \n64 (2009) 7 SCC 559. \n65 (2008) 16 SCC 14.",
+    "chunk_index": 138,
+    "section": "Section 389",
+    "char_start": 42040,
+    "char_end": 43009,
+    "word_count": 162,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "66 W.P.(CRL) 558/2016.",
+    "chunk_index": 139,
+    "section": "66",
+    "char_start": 43009,
+    "char_end": 43033,
+    "word_count": 3,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "67 Criminal Appeal (DB) 583 of 2015 dt. 09-03-2017. \n24 | P a g e  \n \nA Two Ju dge Bench of the Supreme Court, in Atul Tripathi V. State of UP 68 discussed the \nscope and ambit of Section 389 ofCr.P.C and issued the following Guidelines regarding the \nsuspension of Sentence during the pendency of Criminal Appeal.  \na. The appellate court, if  inclined to consider the release of a convict sentenced to \npunishment for death or imprisonment for life or for a period of ten years or more, \nshall first give an opportunity to the public prosecutor to show cause in writing \nagainst such release. \nb. On such opportunity being given, the State is required to file its objections, if any, in \nwriting. \nc. In case the public prosecutor does not file the objections in writing, the appellate court \nshall, in its order, specify that no objection had been filed despite the opportunity \ngranted by the court. \nd. The court shall judiciously consider all the relevant factors whether specified in the",
+    "chunk_index": 140,
+    "section": "67",
+    "char_start": 43033,
+    "char_end": 44029,
+    "word_count": 171,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "shall, in its order, specify that no objection had been filed despite the opportunity \ngranted by the court. \nd. The court shall judiciously consider all the relevant factors whether specified in the\nobjections or not, like gravity of offence, nature of the crime, age, criminal \nantecedents of the convict, impact on public confidence in court, etc. before passing \nan order for release",
+    "chunk_index": 141,
+    "section": "67",
+    "char_start": 43828,
+    "char_end": 44220,
+    "word_count": 62,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "POWER OF SESSIONS COURT AND HIGH COURT REGARDING THE BAIL",
+    "chunk_index": 142,
+    "section": "POWER OF SESSIONS COURT AND HIGH COURT REGARDING THE BAIL",
+    "char_start": 44220,
+    "char_end": 44279,
+    "word_count": 10,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "Section 439 gives Special powers to High Court or Court of Session regarding bail. It may \ndirect that any person accused of an offence and in custody be released on bail. It may impose \nany condition which it considers necessary for the purposes mentioned in that sub-section. It \nmay impose or set aside any condition imposed by a Magistrate when releasing or set aside or \nmodified. When the offence is triable exclusively by the Court of Session, give notice of the \napplication to the Public Prosecutor unless i t is, for reasons to be recorded in writing, of \nopinion that it is not practicable to give such notice. It may also direct that any person who \nhas been released on bail under this Chapter be arrested and commit him to custody.",
+    "chunk_index": 143,
+    "section": "Section 439",
+    "char_start": 44279,
+    "char_end": 45090,
+    "word_count": 131,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "68 Crl. Appeal No.NO.1516/2014 Dated.22-07-2014. \n25 | P a g e",
+    "chunk_index": 144,
+    "section": "68",
+    "char_start": 45090,
+    "char_end": 45157,
+    "word_count": 11,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "CANCELLATION OF BAIL \nThe basic criteria for cancellation of bail are interference or even an attempt to interfere with \ndue course of Justice or any abuse of indulgence/ privilege granted to the accused. \n Ram Govind Upadhya Vs. Sudarshan Singh ,69 The power of the Court under the secti on to \ncancel bail can be invoked either by the state itself or by any aggrieved party or even suo \nmotu as held in the case of Puran vs. Ramvilas.70  \nAs per Section 437 (5) of Cr.P.C. any Court which has released a person on bail may, if it \nconsidered it nec essary so to do, cancel the bail and direct that such person be arrested and \ncommitted to custody. In R.J Sharma Vs. R.P. Patankar ,71 it is held that Magistrate ought to \npursue the application for cancellation of bail and afford an opportunity to accused to  be \nheard.  \nDolat Ram v. State of Haryana72 The Hon'ble Supreme Court has held that once bail has been",
+    "chunk_index": 145,
+    "section": "CANCELLATION OF BAIL",
+    "char_start": 45157,
+    "char_end": 46075,
+    "word_count": 165,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "ght to \npursue the application for cancellation of bail and afford an opportunity to accused to  be \nheard.  \nDolat Ram v. State of Haryana72 The Hon'ble Supreme Court has held that once bail has been\ngranted, it can only be cancelled based on cogent and overwhelming circumstances. \nProceedings for the cancellation of bail are not in the nature of an app eal from the grant of \nbail, and therefore, a court must look for circumstances that warrant cancellation of bail, such \nas interference or attempt to interfere with the due course of justice, or abuse of concession of \nbail grante d to the accused in any mann er. Bail granted to an accused with reference to \nbailable offence can be cancelled only if the accused (1) misuses his liberty by indulging in \nsimilar criminal activity, (2) interferes with the course of investigation, (3) attempts to tamper \nwith evidence of witnesses, (4) threatens witnesses or indulges in similar activities which",
+    "chunk_index": 146,
+    "section": "CANCELLATION OF BAIL",
+    "char_start": 45874,
+    "char_end": 46830,
+    "word_count": 159,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "ging in \nsimilar criminal activity, (2) interferes with the course of investigation, (3) attempts to tamper \nwith evidence of witnesses, (4) threatens witnesses or indulges in similar activities which\nwould hamper smooth investigation, (5) attempts to flee to another country, (6) attempts to \nmake himself scarce by going underground or becoming unavailable to the investigating \nagency, (7) attempts to place himself beyond the reach of his surety, etc. These grounds are \nillustrative and not exhaustive. However, a bail granted to a person accused of bailable \noffence cannot be cancelled on the ground that the complainant was not heard.  \n                                                           \n69 2002 Cr.L.J 1849 (S.C.)",
+    "chunk_index": 147,
+    "section": "CANCELLATION OF BAIL",
+    "char_start": 46629,
+    "char_end": 47362,
+    "word_count": 103,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "70 AIR 2001 SC 2013. \n71 1993 Cri.L.J. 1993 [Bombay]. \n72 (1955) 1 SCC 349. \n26 | P a g e  \n \nCONCLUSION \nThe Criminal Procedure Code, gives only an outline of the provisions of bail, but most of the \nwork is done by the courts themselves. The judicial principles laid -down by the courts may \nbe changed by the courts also. As far as the meaning and definition of bail is concerned it has \nnot been statutory defined. Consequently, it continues to be understood as a right for \nassurance of freedom against State imposed restrains of security of appearance of a person for \nhis release. Bail is generally a matter of judiciary discretion. While consid ering whether to \ngrant or not to grant bail, conflicting claims of undoubtedly liberty of the accused and the \nlarger interest of the society have to be taken note of. As far as the evolution and history of \nbail is concerned it has gradually evolved in Indi a. This is a very important instrument. The",
+    "chunk_index": 148,
+    "section": "70",
+    "char_start": 47362,
+    "char_end": 48320,
+    "word_count": 170,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "and the \nlarger interest of the society have to be taken note of. As far as the evolution and history of \nbail is concerned it has gradually evolved in Indi a. This is a very important instrument. The\nimportance of instrument of bail can be imagined from the fact that from the initial stage of \naccusation at police level to Apex Court and right from direction for anticipatory bail to \nspecial powers of High Cour t and Court of Session to grant bail and writ of Habeas corpus \nand certiorari have been provided to restore the liberty of the individual \n \nFor the purpose of granting bail offences have been classified into Bailable and non -bailable \noffences under Section 2 of the Criminal Procedure Code. The basic distinction in these \noffences is that in bailable offences Bail can be claimed as a matter of right, whereas in non -\nbailable offences it is at the discretion of the Courts whether to grant bail or not. While",
+    "chunk_index": 149,
+    "section": "70",
+    "char_start": 48119,
+    "char_end": 49052,
+    "word_count": 165,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "n in these \noffences is that in bailable offences Bail can be claimed as a matter of right, whereas in non -\nbailable offences it is at the discretion of the Courts whether to grant bail or not. While\ngranting bail in case of non -bailable offences various factors are to be taken into account by \nthe Courts Today the horizon of Human Rights is expanding. At the same time, the crime rate \nis also increasing. Observing this, Supreme Court has been held that ther e is urgent need to \nmake a balance between personal liberty and investigational powers of Police. There can be \nno gain saying that freedom of an individual must yield to the security of the state. However, \nnot right can be absolute and reasonable restrictions can be placed on them. \n  \n27 | P a g e  \n \nREFRENCES \nBOOK’S REFERRED \n R.V. KELKAR’S CRIMINAL PROCEDURE, 6TH EDITION, 2016. \n RATANLAL AND DHIRAJLAL’S THE CODE OF CRIMINAL PROCEDURE, \nLEXIS NEXIS, 22 ND EDITION. \n SARKAR, THE CODE OF CRIMINAL PROCEDURE.",
+    "chunk_index": 150,
+    "section": "70",
+    "char_start": 48851,
+    "char_end": 49841,
+    "word_count": 172,
+    "source": "bail2_train.pdf"
+  },
+  {
+    "text": "ONLINE REFRRENCES \n ALL INDIA REPORTER \n SCC ONLINE \n MANUPATRA \n \nREPORT \n The Report No.268 of the Law Commission of India, on bail reforms, titled \n“Amendments to Criminal Procedure Code, 1973",
+    "chunk_index": 151,
+    "section": "ONLINE REFRRENCES",
+    "char_start": 49841,
+    "char_end": 50041,
+    "word_count": 32,
+    "source": "bail2_train.pdf"
   }
 ]
